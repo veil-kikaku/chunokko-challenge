@@ -92,15 +92,9 @@ function setupMap() {
 
         tooltip.textContent = `${prefName} (${count}件)`;
         tooltip.style.display = "block";
-
-        moveTooltip(e);
       };
 
-      pref.onmousemove = e => {
-        if (isDragging) return;
-
-        moveTooltip(e);
-      };
+      pref.onmousemove = null;
 
       pref.onmouseleave = () => {
         document.getElementById("map-tooltip").style.display = "none";
@@ -296,15 +290,5 @@ document.getElementById("zoom-reset").addEventListener("click", () => {
   mapY = 0;
   updateMapTransform();
 });
-
-function moveTooltip(e) {
-  const tooltip = document.getElementById("map-tooltip");
-
-  tooltip.style.left =
-    `${e.clientX + 16}px`;
-
-  tooltip.style.top =
-    `${e.clientY + 16}px`;
-}
 
 init();
