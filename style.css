@@ -71,14 +71,6 @@ cursor:pointer;
 transition:.2s;
 }
 
-.prefecture:hover{
-fill:#ffd54f !important;
-}
-
-.completed{
-fill:#81c784 !important;
-}
-
 @media (max-width:900px){
 
 #container{

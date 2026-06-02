@@ -6,20 +6,20 @@
     }
 
     .prefecture.lv2 {
-      fill: #7ed957 !important;
+      fill: #4caf50 !important;
     }
 
     .prefecture.lv3 {
-      fill: #32cd32 !important;
+      fill: #2e7d32 !important;
     }
 
     .prefecture.lv4 {
-      fill: #228b22 !important;
+      fill: #1b5e20 !important;
     }
 
     .prefecture:hover {
-      fill: #006400 !important;
-      filter: brightness(1.15);
+      stroke: #ffd700 !important;
+      stroke-width: 3 !important;
     }
   </style>
   <title>Japanese Prefectures</title>
