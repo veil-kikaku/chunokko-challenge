@@ -55,10 +55,10 @@ function setupMap() {
         tooltip.style.display = "block";
 
         tooltip.style.left =
-          `${objectRect.left + e.clientX + 16}px`;
+          `${objectRect.left + e.clientX * mapScale + 16}px`;
 
         tooltip.style.top =
-          `${objectRect.top + e.clientY + 16}px`;
+          `${objectRect.top + e.clientY * mapScale + 16}px`;
       };
 
       pref.onmousemove = e => {
@@ -68,10 +68,10 @@ function setupMap() {
           .getBoundingClientRect();
 
         tooltip.style.left =
-          `${objectRect.left + e.clientX + 16}px`;
+          `${objectRect.left + e.clientX * mapScale + 16}px`;
 
         tooltip.style.top =
-          `${objectRect.top + e.clientY + 16}px`;
+          `${objectRect.top + e.clientY * mapScale + 16}px`;
       };
 
       pref.onmouseleave = () => {
