@@ -82,16 +82,13 @@ function setupMap() {
         "completed",
         "lv1",
         "lv2",
-        "lv3",
-        "lv4"
+        "lv3"
       );
 
       if (count > 0) {
         pref.classList.add("completed");
 
-        if (count >= 10) {
-          pref.classList.add("lv4");
-        } else if (count >= 5) {
+        if (count >= 5) {
           pref.classList.add("lv3");
         } else if (count >= 3) {
           pref.classList.add("lv2");

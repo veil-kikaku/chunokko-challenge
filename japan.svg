@@ -10,10 +10,6 @@
     }
 
     .prefecture.lv3 {
-      fill: #2e7d32 !important;
-    }
-
-    .prefecture.lv4 {
       fill: #1b5e20 !important;
     }
 
