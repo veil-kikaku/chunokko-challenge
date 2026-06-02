@@ -38,6 +38,8 @@ function setupMap() {
     svgRoot.addEventListener("mousedown", e => {
       if (mapScale <= 1) return;
 
+      document.getElementById("map-tooltip").style.display = "none";
+
       isDragging = true;
       startX = e.clientX - mapX;
       startY = e.clientY - mapY;
@@ -45,23 +47,6 @@ function setupMap() {
       document
         .getElementById("japan-map")
         .classList.add("dragging");
-    });
-
-    svgDoc.addEventListener("mousemove", e => {
-      if (!isDragging) return;
-
-      mapX = e.clientX - startX;
-      mapY = e.clientY - startY;
-
-      updateMapTransform();
-    });
-
-    svgDoc.addEventListener("mouseup", () => {
-      isDragging = false;
-
-      document
-        .getElementById("japan-map")
-        .classList.remove("dragging");
     });
   }
 
@@ -83,32 +68,20 @@ function setupMap() {
       }
 
       pref.onmouseenter = e => {
+        if (isDragging) return;
+
         const tooltip = document.getElementById("map-tooltip");
-        const mapRect = document
-          .getElementById("map-container")
-          .getBoundingClientRect();
-
-        tooltip.style.left =
-          `${e.clientX - mapRect.left + 16}px`;
-
-        tooltip.style.top =
-          `${e.clientY - mapRect.top + 16}px`;
 
         tooltip.textContent = `${prefName} (${count}件)`;
         tooltip.style.display = "block";
+
+        moveTooltip(e);
       };
 
       pref.onmousemove = e => {
-        const tooltip = document.getElementById("map-tooltip");
-        const mapRect = document
-          .getElementById("map-container")
-          .getBoundingClientRect();
+        if (isDragging) return;
 
-        tooltip.style.left =
-          `${e.clientX - mapRect.left + 16}px`;
-
-        tooltip.style.top =
-          `${e.clientY - mapRect.top + 16}px`;
+        moveTooltip(e);
       };
 
       pref.onmouseleave = () => {
@@ -305,5 +278,19 @@ document.getElementById("zoom-reset").addEventListener("click", () => {
   mapY = 0;
   updateMapTransform();
 });
+
+function moveTooltip(e) {
+  const tooltip = document.getElementById("map-tooltip");
+
+  const mapRect = document
+    .getElementById("map-container")
+    .getBoundingClientRect();
+
+  tooltip.style.left =
+    `${e.clientX - mapRect.left + 16}px`;
+
+  tooltip.style.top =
+    `${e.clientY - mapRect.top + 16}px`;
+}
 
 init();
