@@ -212,4 +212,26 @@ function showPrefecture(prefName) {
   }
 }
 
+let mapScale = 1;
+
+function updateMapZoom() {
+  document.getElementById("japan-map").style.transform =
+    `scale(${mapScale})`;
+}
+
+document.getElementById("zoom-in").addEventListener("click", () => {
+  mapScale = Math.min(mapScale + 0.2, 2.5);
+  updateMapZoom();
+});
+
+document.getElementById("zoom-out").addEventListener("click", () => {
+  mapScale = Math.max(mapScale - 0.2, 1);
+  updateMapZoom();
+});
+
+document.getElementById("zoom-reset").addEventListener("click", () => {
+  mapScale = 1;
+  updateMapZoom();
+});
+
 init();
