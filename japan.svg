@@ -23,7 +23,7 @@
 
     .prefecture.selected{
       stroke:#FFB505 !important;
-      stroke-width:5 !important;
+      stroke-width:3 !important;
     }
 }
   </style>
