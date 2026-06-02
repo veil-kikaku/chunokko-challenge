@@ -91,11 +91,8 @@ function setupMap() {
         tooltip.textContent = `${prefName} (${count}件)`;
         tooltip.style.display = "block";
 
-        tooltip.style.left =
-          `${objectRect.left + e.clientX + 16}px`;
-
-        tooltip.style.top =
-          `${objectRect.top + e.clientY + 16}px`;
+        tooltip.style.left = `${e.clientX + 16}px`;
+        tooltip.style.top = `${e.clientY + 16}px`;
       };
 
       pref.onmousemove = e => {
@@ -104,11 +101,8 @@ function setupMap() {
           .getElementById("japan-map")
           .getBoundingClientRect();
 
-        tooltip.style.left =
-          `${objectRect.left + e.clientX + 16}px`;
-
-        tooltip.style.top =
-          `${objectRect.top + e.clientY + 16}px`;
+        tooltip.style.left = `${e.clientX + 16}px`;
+        tooltip.style.top = `${e.clientY + 16}px`;
       };
 
       pref.onmouseleave = () => {
