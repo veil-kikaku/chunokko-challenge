@@ -122,8 +122,10 @@ function updateStats() {
   const percent =
     ((completed / total) * 100).toFixed(1);
 
+  const remaining = total - completed;
+
   document.getElementById("stats").textContent =
-    `${completed} / ${total} 都道府県 (${percent}%)`;
+    `${completed} / ${total} 都道府県 (${percent}%) ・ 残り${remaining}都道府県`;
 
   document.getElementById("progress-bar").style.width =
     `${percent}%`;
@@ -159,17 +161,38 @@ function showPrefecture(prefName) {
     return;
   }
 
-  container.innerHTML = posts.map(post => `
+  const spotIndex = posts.map(post => `
+    <li>${post.spot}</li>
+  `).join("");
+
+  const postItems = posts.map(post => `
     <div class="post">
       <h3>${post.spot}</h3>
 
-      <blockquote
-        class="twitter-tweet"
-        data-theme="light">
-        <a href="${post.url}"></a>
-      </blockquote>
+      ${
+        post.url
+          ? `
+            <blockquote
+              class="twitter-tweet"
+              data-theme="light">
+              <a href="${post.url}"></a>
+            </blockquote>
+          `
+          : `<div class="empty">投稿URLはありません</div>`
+      }
     </div>
   `).join("");
+
+  container.innerHTML = `
+    <div class="spot-index">
+      <div class="spot-index-title">スポット一覧</div>
+      <ul>
+        ${spotIndex}
+      </ul>
+    </div>
+
+    ${postItems}
+  `;
 
   if (window.twttr?.widgets) {
     window.twttr.widgets.load(container);
