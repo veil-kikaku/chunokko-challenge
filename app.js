@@ -2,7 +2,6 @@ let spots = [];
 let prefMap = {};
 
 async function init() {
-
   spots = await fetch("spots.json").then(r => r.json());
 
   spots.forEach(item => {
@@ -16,46 +15,56 @@ async function init() {
 
   const mapObject = document.getElementById("japan-map");
 
-  mapObject.addEventListener("load", () => {
+  if (mapObject.contentDocument) {
+    setupMap();
+  } else {
+    mapObject.addEventListener("load", setupMap);
+  }
+}
 
-    const svgDoc = mapObject.contentDocument;
+function setupMap() {
+  const mapObject = document.getElementById("japan-map");
+  const svgDoc = mapObject.contentDocument;
 
-    svgDoc
-      .querySelectorAll(".prefecture")
-      .forEach(pref => {
+  if (!svgDoc) return;
 
-        const prefName =
-          pref.querySelector("title")?.textContent.trim() || "";
+  svgDoc
+    .querySelectorAll(".prefecture")
+    .forEach(pref => {
+      const prefName =
+        pref.querySelector("title")?.textContent.trim() || "";
 
-        const count = prefMap[prefName]?.length || 0;
+      const count = prefMap[prefName]?.length || 0;
 
-        if (count > 0) {
+      pref.classList.remove(
+        "completed",
+        "lv1",
+        "lv2",
+        "lv3",
+        "lv4"
+      );
 
-          pref.classList.add("completed");
+      if (count > 0) {
+        pref.classList.add("completed");
 
-          if (count >= 10) {
-            pref.classList.add("lv4");
-          } else if (count >= 5) {
-            pref.classList.add("lv3");
-          } else if (count >= 3) {
-            pref.classList.add("lv2");
-          } else {
-            pref.classList.add("lv1");
-          }
+        if (count >= 10) {
+          pref.classList.add("lv4");
+        } else if (count >= 5) {
+          pref.classList.add("lv3");
+        } else if (count >= 3) {
+          pref.classList.add("lv2");
+        } else {
+          pref.classList.add("lv1");
         }
+      }
 
-        pref.addEventListener("click", () => {
-          showPrefecture(prefName);
-        });
-
+      pref.addEventListener("click", () => {
+        showPrefecture(prefName);
       });
-
-  });
-
+    });
 }
 
 function updateStats() {
-
   const completed = Object.keys(prefMap).length;
   const total = 47;
 
@@ -70,7 +79,6 @@ function updateStats() {
 }
 
 function showPrefecture(prefName) {
-
   document.getElementById("pref-name").textContent =
     prefName;
 
@@ -80,7 +88,6 @@ function showPrefecture(prefName) {
     document.getElementById("post-list");
 
   if (posts.length === 0) {
-
     container.innerHTML =
       '<div class="empty">投稿はまだありません</div>';
 
