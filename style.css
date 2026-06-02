@@ -183,13 +183,14 @@ height:40%;
   right:20px;
   z-index:100;
 
-  background:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(4px);
   padding:8px 10px;
   border-radius:10px;
 
   box-shadow:0 2px 8px rgba(0,0,0,.15);
 
-  font-size:12px;
+  font-size:13px;
 }
 
 #map-legend div{
@@ -221,4 +222,10 @@ height:40%;
 
 .legend-box.lv3{
   background:#2e7d32;
+}
+
+.legend-box.selected{
+  background:#fff;
+  border:2px solid #fb8c00;
+  box-sizing:border-box;
 }
