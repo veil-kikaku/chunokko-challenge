@@ -61,8 +61,6 @@ function setupMap() {
     style.textContent = `
       .prefecture.hover-linked{
         filter:brightness(1.25);
-        stroke:#fb8c00 !important;
-        stroke-width:3 !important;
       }
     `;
 
@@ -160,6 +158,7 @@ function setupMap() {
       pref.onclick = () => {
         selectPrefecture(pref);
         showPrefecture(prefName);
+        setSelectedPrefecture(prefName);
       };
     });
 
@@ -171,6 +170,7 @@ function setupMap() {
     if (tokyo) {
       selectPrefecture(tokyo);
       showPrefecture("東京");
+      setSelectedPrefecture("東京");
     }
   }
   
@@ -220,6 +220,7 @@ function setupMap() {
         if (targetPref) {
           selectPrefecture(targetPref);
           showPrefecture(targetName);
+          setSelectedPrefecture(targetName);
         }
       };
 
@@ -232,6 +233,17 @@ function setHoverPrefecture(prefName) {
     .forEach(item => {
       item.classList.toggle(
         "active",
+        item.dataset.pref === prefName
+      );
+    });
+}
+
+function setSelectedPrefecture(prefName) {
+  document
+    .querySelectorAll(".pref-hover-item")
+    .forEach(item => {
+      item.classList.toggle(
+        "selected",
         item.dataset.pref === prefName
       );
     });

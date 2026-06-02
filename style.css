@@ -175,7 +175,15 @@ height:40%;
   cursor:pointer;
 }
 
+.prefecture.hover-linked{
+  filter:brightness(1.25);
+}
+
 .pref-hover-item.active{
+  background:#fff3cd;
+}
+
+.pref-hover-item.selected{
   background:#fff3cd;
   outline:2px solid #fb8c00;
 }
