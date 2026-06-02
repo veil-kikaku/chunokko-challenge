@@ -13,21 +13,12 @@
       fill: #2e7d32 !important;
     }
 
-    .prefecture:hover:not(.selected) {
-      filter: brightness(1.25);
-    }
-
     .pref-hover-item.active{
       background:#fff3cd;
     }
 
     .pref-hover-item.selected{
-      background:#fff3cd;
       outline:2px solid #fb8c00;
-    }
-    
-    .prefecture.hover-linked{
-      filter:brightness(1.25);
     }
 }
   </style>

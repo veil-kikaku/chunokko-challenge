@@ -104,8 +104,9 @@ function setupMap() {
 
     style.id = "hover-style";
     style.textContent = `
-      .prefecture.hover-linked{
-        filter:brightness(1.25);
+      .prefecture.hover-linked,
+      .prefecture:hover{
+        fill:#fff3cd !important;
       }
     `;
 

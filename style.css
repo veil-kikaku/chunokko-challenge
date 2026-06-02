@@ -115,10 +115,6 @@ height:40%;
   fill: #2e7d32 !important;
 }
 
-.prefecture:hover:not(.selected) {
-  filter: brightness(1.15);
-}
-
 .prefecture.selected{
   stroke:#fb8c00 !important;
   stroke-width:3 !important;
@@ -186,7 +182,6 @@ height:40%;
 }
 
 .pref-hover-item.selected{
-  background:#fff3cd;
   outline:2px solid #fb8c00;
 }
 
