@@ -38,8 +38,6 @@ function setupMap() {
     svgRoot.addEventListener("mousedown", e => {
       if (mapScale <= 1) return;
 
-      document.getElementById("map-tooltip").style.display = "none";
-
       isDragging = true;
       startX = e.clientX - mapX;
       startY = e.clientY - mapY;
@@ -54,6 +52,12 @@ function setupMap() {
 
       mapX += e.movementX;
       mapY += e.movementY;
+
+      const maxX = (mapScale - 1) * 400;
+      const maxY = (mapScale - 1) * 300;
+
+      mapX = Math.max(-maxX, Math.min(maxX, mapX));
+      mapY = Math.max(-maxY, Math.min(maxY, mapY));
 
       updateMapTransform();
     });
@@ -246,6 +250,12 @@ window.addEventListener("mousemove", e => {
 
   mapX += e.movementX;
   mapY += e.movementY;
+
+  const maxX = (mapScale - 1) * 400;
+  const maxY = (mapScale - 1) * 300;
+
+  mapX = Math.max(-maxX, Math.min(maxX, mapX));
+  mapY = Math.max(-maxY, Math.min(maxY, mapY));
 
   updateMapTransform();
 });
