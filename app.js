@@ -154,7 +154,7 @@ function showPrefecture(prefName) {
 
   if (posts.length === 0) {
     container.innerHTML =
-      '<div class="empty">投稿はまだありません</div>';
+      '<div class="empty">投稿はありません</div>';
 
     return;
   }
