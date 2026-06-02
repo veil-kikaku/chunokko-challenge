@@ -127,8 +127,8 @@ height:40%;
   fill: #1b5e20 !important;
 }
 
-.prefecture:hover {
-  filter: brightness(1.25);
+.prefecture:hover:not(.selected) {
+  filter: brightness(1.15);
 }
 
 .prefecture.selected{

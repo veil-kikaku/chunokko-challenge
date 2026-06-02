@@ -17,13 +17,13 @@
       fill: #1b5e20 !important;
     }
 
-    .prefecture:hover {
-      filter: brightness(1.25);
+    .prefecture:hover:not(.selected) {
+      filter: brightness(1.15);
     }
 
     .prefecture.selected{
-      stroke:#FFB505 !important;
-      stroke-width:3 !important;
+      stroke:#ffd54f !important;
+      stroke-width:2.5 !important;
     }
 }
   </style>
