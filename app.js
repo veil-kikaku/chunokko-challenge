@@ -161,12 +161,25 @@ function showPrefecture(prefName) {
     return;
   }
 
-  const spotIndex = posts.map(post => `
-    <li>${post.spot}</li>
+  const spotIndex = posts.map((post, index) => `
+    <li>
+      <a
+        href="#"
+        onclick="
+          document.getElementById('post-${index}')
+            .scrollIntoView({
+              behavior:'smooth',
+              block:'start'
+            });
+          return false;
+        ">
+        ${post.spot}
+      </a>
+    </li>
   `).join("");
 
-  const postItems = posts.map(post => `
-    <div class="post">
+  const postItems = posts.map((post, index) => `
+    <div class="post" id="post-${index}">
       <h3>${post.spot}</h3>
 
       ${

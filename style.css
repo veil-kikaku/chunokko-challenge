@@ -262,3 +262,11 @@ height:40%;
 .spot-index li{
   margin:4px 0;
 }
+.spot-index a{
+  color:#1976d2;
+  text-decoration:none;
+}
+
+.spot-index a:hover{
+  text-decoration:underline;
+}
