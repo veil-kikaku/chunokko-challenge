@@ -102,14 +102,6 @@ height:40%;
   margin-bottom:8px;
 }
 
-#side-panel{
-  scrollbar-width:none;
-}
-
-#side-panel::-webkit-scrollbar{
-  display:none;
-}
-
 .credits{
   text-align:center;
   padding:8px 12px;
@@ -119,29 +111,45 @@ height:40%;
   border-top:1px solid #ddd;
 }
 
-.prefecture.lv1{
-  fill:#a5d6a7 !important;
+.prefecture.lv1 {
+  fill: #90ee90 !important;
 }
 
-.prefecture.lv2{
-  fill:#66bb6a !important;
+.prefecture.lv2 {
+  fill: #4caf50 !important;
 }
 
-.prefecture.lv3{
-  fill:#43a047 !important;
+.prefecture.lv3 {
+  fill: #2e7d32 !important;
 }
 
-.prefecture.lv4{
-  fill:#1b5e20 !important;
+.prefecture.lv4 {
+  fill: #1b5e20 !important;
 }
 
-.prefecture:hover{
-  filter:brightness(1.2);
-  stroke:#ffeb3b !important;
-  stroke-width:3 !important;
+.prefecture:hover {
+  stroke: #ffd700 !important;
+  stroke-width: 5 !important;
 }
 
 .prefecture.selected{
   stroke:#ff9800 !important;
   stroke-width:5 !important;
+}
+
+#side-panel{
+  scrollbar-width:auto;
+}
+
+#side-panel::-webkit-scrollbar{
+  width:10px;
+}
+
+#side-panel::-webkit-scrollbar-thumb{
+  background:#bbb;
+  border-radius:10px;
+}
+
+#side-panel::-webkit-scrollbar-track{
+  background:#eee;
 }
