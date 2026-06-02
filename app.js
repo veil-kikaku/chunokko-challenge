@@ -59,6 +59,7 @@ function setupMap() {
       }
 
       pref.onclick = () => {
+        selectPrefecture(pref);
         showPrefecture(prefName);
       };
     });
@@ -76,6 +77,18 @@ function updateStats() {
 
   document.getElementById("progress-bar").style.width =
     `${percent}%`;
+}
+
+function selectPrefecture(pref) {
+
+  const svgDoc =
+    document.getElementById("japan-map").contentDocument;
+
+  svgDoc
+    .querySelectorAll(".selected")
+    .forEach(p => p.classList.remove("selected"));
+
+  pref.classList.add("selected");
 }
 
 function showPrefecture(prefName) {

@@ -21,6 +21,11 @@
       stroke: #ffd700 !important;
       stroke-width: 3 !important;
     }
+
+    .prefecture.selected{
+      stroke:#ff9800 !important;
+      stroke-width:4 !important;
+    }
   </style>
   <title>Japanese Prefectures</title>
   <desc>Created by Geolonia (https://geolonia.com/).</desc>
