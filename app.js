@@ -28,6 +28,10 @@ function setupMap() {
 
   if (!svgDoc) return;
 
+  const svgRoot = svgDoc.querySelector("svg");
+
+  if (!svgRoot) return;
+
   if (!svgRoot.dataset.dragReady) {
     svgRoot.dataset.dragReady = "true";
 
