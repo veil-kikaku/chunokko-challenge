@@ -32,9 +32,44 @@ function setupMap() {
     .querySelectorAll(".prefecture")
     .forEach(pref => {
       const prefName =
-        pref.querySelector("title")?.textContent.trim() || "";
+        pref.dataset.name ||
+        pref.querySelector("title")?.textContent.trim() ||
+        "";
+
+      pref.dataset.name = prefName;
 
       const count = prefMap[prefName]?.length || 0;
+
+      const titleEl = pref.querySelector("title");
+      if (titleEl) {
+        titleEl.remove();
+      }
+
+      pref.onmouseenter = e => {
+        const tooltip = document.getElementById("map-tooltip");
+        const rect = document
+          .getElementById("map-container")
+          .getBoundingClientRect();
+
+        tooltip.textContent = `${prefName} (${count}件)`;
+        tooltip.style.display = "block";
+        tooltip.style.left = `${e.clientX - rect.left + 12}px`;
+        tooltip.style.top = `${e.clientY - rect.top + 12}px`;
+      };
+
+      pref.onmousemove = e => {
+        const tooltip = document.getElementById("map-tooltip");
+        const rect = document
+          .getElementById("map-container")
+          .getBoundingClientRect();
+
+        tooltip.style.left = `${e.clientX - rect.left + 12}px`;
+        tooltip.style.top = `${e.clientY - rect.top + 12}px`;
+      };
+
+      pref.onmouseleave = () => {
+        document.getElementById("map-tooltip").style.display = "none";
+      };
 
       pref.classList.remove(
         "completed",
@@ -67,10 +102,7 @@ function setupMap() {
   if (!svgDoc.querySelector(".selected")) {
     const tokyo =
       [...svgDoc.querySelectorAll(".prefecture")]
-        .find(p =>
-          p.querySelector("title")
-            ?.textContent.trim() === "東京"
-        );
+        .find(p => p.classList.contains("tokyo"));
 
     if (tokyo) {
       selectPrefecture(tokyo);

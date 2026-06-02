@@ -18,13 +18,13 @@
     }
 
     .prefecture:hover {
-      stroke: #ffd700 !important;
-      stroke-width: 5 !important;
+      stroke:#ffffff !important;
+      stroke-width:6 !important;
     }
 
     .prefecture.selected{
       stroke:#ff9800 !important;
-      stroke-width:5 !important;
+      stroke-width:6 !important;
     }
   </style>
   <title>Japanese Prefectures</title>

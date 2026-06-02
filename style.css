@@ -128,13 +128,13 @@ height:40%;
 }
 
 .prefecture:hover {
-  stroke: #ffd700 !important;
-  stroke-width: 5 !important;
+  stroke:#ffffff !important;
+  stroke-width:6 !important;
 }
 
 .prefecture.selected{
   stroke:#ff9800 !important;
-  stroke-width:5 !important;
+  stroke-width:6 !important;
 }
 
 #side-panel{
@@ -152,4 +152,28 @@ height:40%;
 
 #side-panel::-webkit-scrollbar-track{
   background:#eee;
+}
+
+#map-container{
+  position:relative;
+  flex:1;
+  background:linear-gradient(
+    to bottom,
+    #9ddcff,
+    #66c2ff
+  );
+}
+
+#map-tooltip{
+  position:absolute;
+  display:none;
+  pointer-events:none;
+
+  background:#fff;
+  border:2px solid #4caf50;
+  border-radius:8px;
+  padding:6px 10px;
+
+  font-weight:bold;
+  box-shadow:0 3px 10px rgba(0,0,0,.25);
 }
