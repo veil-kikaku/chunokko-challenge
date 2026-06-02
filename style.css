@@ -43,8 +43,11 @@ overflow:hidden;
 }
 
 #map-container{
-flex:1;
-background:#f5f5f5;
+  background:linear-gradient(
+    to bottom,
+    #eaf9ff,
+    #cfefff
+  );
 }
 
 #japan-map{
