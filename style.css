@@ -42,14 +42,6 @@ display:flex;
 overflow:hidden;
 }
 
-#map-container{
-  flex:1;
-  background:linear-gradient(
-    to bottom,
-    #9ddcff,
-    #66c2ff
-  );
-}
 
 #japan-map{
 width:100%;
@@ -152,6 +144,7 @@ height:40%;
 #map-container{
   position:relative;
   flex:1;
+  overflow:hidden;
   background:linear-gradient(
     to bottom,
     #9ddcff,
