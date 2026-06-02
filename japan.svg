@@ -18,14 +18,14 @@
     }
 
     .prefecture:hover {
-      stroke:#ff9800 !important;
-      stroke-width:6 !important;
+      stroke:#ffd54f !important;
+      stroke-width:4 !important;
     }
 
     .prefecture.selected{
-      stroke:#ff5722 !important;
-      stroke-width:6 !important;
-    }
+      stroke:#ffb300 !important;
+      stroke-width:4 !important;
+}
   </style>
   <title>Japanese Prefectures</title>
   <desc>Created by Geolonia (https://geolonia.com/).</desc>
