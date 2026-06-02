@@ -214,14 +214,14 @@ function setupMap() {
     });
 
   if (!svgDoc.querySelector(".selected")) {
-    const tokyo =
+    const hokkaido =
       [...svgDoc.querySelectorAll(".prefecture")]
-        .find(p => p.classList.contains("tokyo"));
+        .find(p => p.classList.contains("hokkaido"));
 
-    if (tokyo) {
-      selectPrefecture(tokyo);
-      showPrefecture("東京");
-      setSelectedPrefecture("東京");
+    if (hokkaido) {
+      selectPrefecture(hokkaido);
+      showPrefecture("北海道");
+      setSelectedPrefecture("北海道");
     }
   }
   
