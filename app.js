@@ -28,6 +28,7 @@ fetch("data.json")
 
     const prefs = new Set();
 
+
     data.forEach(location => {
 
       prefs.add(location.prefecture);
@@ -39,14 +40,13 @@ fetch("data.json")
 
       marker.bindTooltip(location.name);
 
+      marker.bindPopup(`
+        <b>${location.name}</b><br>
+        ${location.prefecture}<br>
+        投稿 ${location.posts.length}件
+      `);
+
       marker.on("click", () => {
-
-        marker.bindPopup(`
-          <b>${location.name}</b><br>
-          ${location.prefecture}<br>
-          投稿 ${location.posts.length}件
-        `).openPopup();
-
         openSpot(location);
       });
     });
@@ -134,7 +134,3 @@ document.getElementById("prev").onclick = () => {
 
   renderTweet();
 };
-
-map.on("click", () => {
-  map.closePopup();
-});
