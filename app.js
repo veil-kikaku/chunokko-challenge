@@ -47,24 +47,31 @@ function setupMap() {
 
       pref.onmouseenter = e => {
         const tooltip = document.getElementById("map-tooltip");
-        const rect = document
-          .getElementById("map-container")
+        const objectRect = document
+          .getElementById("japan-map")
           .getBoundingClientRect();
 
         tooltip.textContent = `${prefName} (${count}件)`;
         tooltip.style.display = "block";
-        tooltip.style.left = `${e.pageX + 16}px`;
-        tooltip.style.top = `${e.pageY + 16}px`;
+
+        tooltip.style.left =
+          `${objectRect.left + e.clientX + 16}px`;
+
+        tooltip.style.top =
+          `${objectRect.top + e.clientY + 16}px`;
       };
 
       pref.onmousemove = e => {
         const tooltip = document.getElementById("map-tooltip");
-        const rect = document
-          .getElementById("map-container")
+        const objectRect = document
+          .getElementById("japan-map")
           .getBoundingClientRect();
 
-        tooltip.style.left = `${e.pageX + 16}px`;
-        tooltip.style.top = `${e.pageY + 16}px`;
+        tooltip.style.left =
+          `${objectRect.left + e.clientX + 16}px`;
+
+        tooltip.style.top =
+          `${objectRect.top + e.clientY + 16}px`;
       };
 
       pref.onmouseleave = () => {
