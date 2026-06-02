@@ -128,8 +128,8 @@ height:40%;
 }
 
 .prefecture.selected{
-  stroke:#FFB505 !important;
-  stroke-width:3 !important;
+  stroke:#ff6f00 !important;
+  stroke-width:2 !important;
 }
 
 #side-panel{
