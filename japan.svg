@@ -14,11 +14,13 @@
     }
 
     .pref-hover-item.active{
-      background:#fff3cd;
+      background:#ffd966;
     }
 
     .pref-hover-item.selected{
-      outline:2px solid #fb8c00;
+      box-shadow:0 0 0 2px #fb8c00;
+      position:relative;
+      z-index:2;
     }
 }
   </style>

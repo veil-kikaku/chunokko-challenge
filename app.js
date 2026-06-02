@@ -106,7 +106,7 @@ function setupMap() {
     style.textContent = `
       .prefecture.hover-linked,
       .prefecture:hover{
-        fill:#fff3cd !important;
+        fill:#ffd966 !important;
       }
     `;
 
