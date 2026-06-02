@@ -325,6 +325,9 @@ height:40%;
 
 #japan-map{
   cursor:grab;
+  width:100%;
+  height:100%;
+  transform-origin:center center;
 }
 
 #japan-map.dragging{
