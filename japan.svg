@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg class="geolonia-svg-map" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .prefecture {
+      transition: fill 0.2s;
+      cursor: pointer;
+    }
+
+    .prefecture.lv1 {
+      fill: #ffe4ec !important;
+    }
+
+    .prefecture.lv2 {
+      fill: #ffc1d6 !important;
+    }
+
+    .prefecture.lv3 {
+      fill: #ff80ab !important;
+    }
+
+    .prefecture.lv4 {
+      fill: #ff4081 !important;
+    }
+
+    .prefecture:hover {
+      fill: #ff1493 !important;
+    }
+  </style>
   <title>Japanese Prefectures</title>
   <desc>Created by Geolonia (https://geolonia.com/).</desc>
   <g class="svg-map" transform="matrix(1.028807, 0, 0, 1.028807, -47.544239, -28.806583)">
