@@ -106,7 +106,12 @@ function setupMap() {
     style.textContent = `
       .prefecture.hover-linked,
       .prefecture:hover{
-        fill:#ffd966 !important;
+        fill:#ffc107 !important;
+      }
+
+      .prefecture.selected{
+        stroke:#fb8c00 !important;
+        stroke-width:3 !important;
       }
     `;
 
