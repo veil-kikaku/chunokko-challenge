@@ -32,6 +32,39 @@ function setupMap() {
 
   if (!svgRoot) return;
 
+  if (!svgRoot.dataset.dragReady) {
+    svgRoot.dataset.dragReady = "true";
+
+    svgRoot.addEventListener("mousedown", e => {
+      if (mapScale <= 1) return;
+
+      isDragging = true;
+      startX = e.clientX - mapX;
+      startY = e.clientY - mapY;
+
+      document
+        .getElementById("japan-map")
+        .classList.add("dragging");
+    });
+
+    svgDoc.addEventListener("mousemove", e => {
+      if (!isDragging) return;
+
+      mapX = e.clientX - startX;
+      mapY = e.clientY - startY;
+
+      updateMapTransform();
+    });
+
+    svgDoc.addEventListener("mouseup", () => {
+      isDragging = false;
+
+      document
+        .getElementById("japan-map")
+        .classList.remove("dragging");
+    });
+  }
+
   svgDoc
     .querySelectorAll(".prefecture")
     .forEach(pref => {
@@ -222,28 +255,6 @@ let mapY = 0;
 let isDragging = false;
 let startX = 0;
 let startY = 0;
-
-const mapContainer =
-  document.getElementById("map-container");
-
-mapContainer.addEventListener("mousedown", e => {
-  if (mapScale <= 1) return;
-
-  if (
-    e.target.closest("#zoom-controls") ||
-    e.target.closest("#map-legend")
-  ) {
-    return;
-  }
-
-  isDragging = true;
-  startX = e.clientX - mapX;
-  startY = e.clientY - mapY;
-
-  document
-    .getElementById("japan-map")
-    .classList.add("dragging");
-});
 
 window.addEventListener("mousemove", e => {
   if (!isDragging) return;
