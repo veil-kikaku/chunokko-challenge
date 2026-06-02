@@ -153,7 +153,7 @@ height:40%;
   top:20px;
   right:20px;
   z-index:110;
-  width:190px;
+  width:210px;
 
   background:rgba(255,255,255,.85);
   backdrop-filter:blur(4px);
@@ -166,7 +166,7 @@ height:40%;
 
 .pref-row{
   display:grid;
-  grid-template-columns:auto auto;
+  grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
