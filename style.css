@@ -109,3 +109,39 @@ height:40%;
 #side-panel::-webkit-scrollbar{
   display:none;
 }
+
+.credits{
+  text-align:center;
+  padding:8px 12px;
+  font-size:11px;
+  color:#777;
+  background:#fff;
+  border-top:1px solid #ddd;
+}
+
+.prefecture.lv1{
+  fill:#a5d6a7 !important;
+}
+
+.prefecture.lv2{
+  fill:#66bb6a !important;
+}
+
+.prefecture.lv3{
+  fill:#43a047 !important;
+}
+
+.prefecture.lv4{
+  fill:#1b5e20 !important;
+}
+
+.prefecture:hover{
+  filter:brightness(1.2);
+  stroke:#ffeb3b !important;
+  stroke-width:3 !important;
+}
+
+.prefecture.selected{
+  stroke:#ff9800 !important;
+  stroke-width:5 !important;
+}
