@@ -18,8 +18,8 @@
     }
 
     .prefecture.selected{
-      stroke:#ff6f00 !important;
-      stroke-width:2 !important;
+      stroke:#fb8c00 !important;
+      stroke-width:3 !important;
     }
 }
   </style>
