@@ -165,9 +165,10 @@ height:40%;
 }
 
 #map-tooltip{
-  position:absolute;
+  position:fixed;
   display:none;
   pointer-events:none;
+  z-index:9999;
 
   background:#fff;
   border:2px solid #4caf50;
