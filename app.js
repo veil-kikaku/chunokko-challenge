@@ -97,6 +97,9 @@ function showPrefecture(prefName) {
 
   const posts = prefMap[prefName] || [];
 
+  document.getElementById("pref-name").textContent =
+    `${prefName} (${posts.length}件)`;
+
   const container =
     document.getElementById("post-list");
 
