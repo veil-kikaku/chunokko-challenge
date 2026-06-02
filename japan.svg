@@ -14,7 +14,7 @@
     }
 
     .prefecture:hover:not(.selected) {
-      filter: brightness(1.15);
+      filter: brightness(1.25);
     }
 
     .pref-hover-item.active{
@@ -24,6 +24,10 @@
     .pref-hover-item.selected{
       background:#fff3cd;
       outline:2px solid #fb8c00;
+    }
+    
+    .prefecture.hover-linked{
+      filter:brightness(1.25);
     }
 }
   </style>

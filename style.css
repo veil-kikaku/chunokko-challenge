@@ -344,9 +344,3 @@ height:40%;
 #japan-map.dragging{
   cursor:grabbing;
 }
-
-.prefecture.hover-linked{
-  filter:brightness(1.25);
-  stroke:#fb8c00 !important;
-  stroke-width:3 !important;
-}
