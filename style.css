@@ -229,3 +229,14 @@ height:40%;
   border:2px solid #fb8c00;
   box-sizing:border-box;
 }
+
+.legend-title{
+  font-weight:bold;
+  margin-bottom:4px;
+}
+
+.legend-separator{
+  height:1px;
+  background:rgba(0,0,0,.15);
+  margin:6px 0;
+}
