@@ -176,3 +176,49 @@ height:40%;
   max-width:200px;
   white-space:nowrap;
 }
+
+#map-legend{
+  position:absolute;
+  top:20px;
+  right:20px;
+  z-index:100;
+
+  background:rgba(255,255,255,.85);
+  padding:8px 10px;
+  border-radius:10px;
+
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+
+  font-size:12px;
+}
+
+#map-legend div{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:4px 0;
+}
+
+.legend-box{
+  width:14px;
+  height:14px;
+  border:1px solid #666;
+  border-radius:3px;
+  display:inline-block;
+}
+
+.legend-box.none{
+  background:#eeeeee;
+}
+
+.legend-box.lv1{
+  background:#90ee90;
+}
+
+.legend-box.lv2{
+  background:#4caf50;
+}
+
+.legend-box.lv3{
+  background:#2e7d32;
+}
