@@ -343,3 +343,7 @@ height:40%;
 #japan-map.dragging{
   cursor:grabbing;
 }
+
+#pref-name{
+  color:#ff9800;
+}
