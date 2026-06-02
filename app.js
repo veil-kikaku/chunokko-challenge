@@ -63,6 +63,20 @@ function setupMap() {
         showPrefecture(prefName);
       };
     });
+
+  if (!svgDoc.querySelector(".selected")) {
+    const tokyo =
+      [...svgDoc.querySelectorAll(".prefecture")]
+        .find(p =>
+          p.querySelector("title")
+            ?.textContent.trim() === "東京"
+        );
+
+    if (tokyo) {
+      selectPrefecture(tokyo);
+      showPrefecture("東京");
+    }
+  }
 }
 
 function updateStats() {
@@ -80,21 +94,17 @@ function updateStats() {
 }
 
 function selectPrefecture(pref) {
-
   const svgDoc =
     document.getElementById("japan-map").contentDocument;
 
   svgDoc
-    .querySelectorAll(".selected")
-    .forEach(p => p.classList.remove("selected"));
+    ?.querySelectorAll(".selected")
+    .forEach(el => el.classList.remove("selected"));
 
   pref.classList.add("selected");
 }
 
 function showPrefecture(prefName) {
-  document.getElementById("pref-name").textContent =
-    prefName;
-
   const posts = prefMap[prefName] || [];
 
   document.getElementById("pref-name").textContent =
