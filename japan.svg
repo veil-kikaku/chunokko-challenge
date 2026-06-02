@@ -2,23 +2,23 @@
 <svg class="geolonia-svg-map" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
   <style>
     .prefecture.lv1 {
-      fill: #ffb6c1 !important;
+      fill: #90ee90 !important;
     }
 
     .prefecture.lv2 {
-      fill: #ff80ab !important;
+      fill: #7ed957 !important;
     }
 
     .prefecture.lv3 {
-      fill: #ff4081 !important;
+      fill: #32cd32 !important;
     }
 
     .prefecture.lv4 {
-      fill: #e91e63 !important;
+      fill: #228b22 !important;
     }
 
     .prefecture:hover {
-      fill: #ff1493 !important;
+      fill: #006400 !important;
       filter: brightness(1.15);
     }
   </style>

@@ -26,9 +26,14 @@ margin-top:10px;
 }
 
 #progress-bar{
-height:100%;
-width:0%;
-background:#4caf50;
+  height:100%;
+  width:0%;
+  background:linear-gradient(
+    90deg,
+    #90ee90,
+    #32cd32,
+    #228b22
+  );
 }
 
 #container{
@@ -85,22 +90,6 @@ width:auto;
 height:40%;
 }
 
-}
-
-.lv1 {
-  fill: #b7e4c7 !important;
-}
-
-.lv2 {
-  fill: #74c69d !important;
-}
-
-.lv3 {
-  fill: #2d6a4f !important;
-}
-
-.lv4 {
-  fill: #081c15 !important;
 }
 
 .empty{
