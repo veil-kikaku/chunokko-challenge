@@ -207,6 +207,22 @@ function setupMap() {
             pref.classList.remove("hover-linked");
           });
       };
+      
+      item.onclick = () => {
+        const targetName = item.dataset.pref;
+        const svgDoc =
+          document.getElementById("japan-map").contentDocument;
+
+        const targetPref =
+          [...svgDoc.querySelectorAll(".prefecture")]
+            .find(pref => pref.dataset.name === targetName);
+
+        if (targetPref) {
+          selectPrefecture(targetPref);
+          showPrefecture(targetName);
+        }
+      };
+
     });
 }
 
