@@ -15,13 +15,11 @@ async function init() {
 
   const mapObject = document.getElementById("japan-map");
 
-  if (mapObject.contentDocument) {
-    setupMap();
-  } else {
-    mapObject.addEventListener("load", setupMap);
-  }
-  
+  mapObject.addEventListener("load", setupMap);
+
+  setTimeout(setupMap, 100);
   setTimeout(setupMap, 500);
+  setTimeout(setupMap, 1000);
 }
 
 function setupMap() {
