@@ -52,8 +52,8 @@ function setupMap() {
     svgDoc.addEventListener("mousemove", e => {
       if (!isDragging) return;
 
-      mapX = e.clientX - startX;
-      mapY = e.clientY - startY;
+      mapX += e.movementX;
+      mapY += e.movementY;
 
       updateMapTransform();
     });
@@ -244,8 +244,8 @@ let startY = 0;
 window.addEventListener("mousemove", e => {
   if (!isDragging) return;
 
-  mapX = e.clientX - startX;
-  mapY = e.clientY - startY;
+  mapX += e.movementX;
+  mapY += e.movementY;
 
   updateMapTransform();
 });
