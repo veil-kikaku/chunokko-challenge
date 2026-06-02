@@ -3,7 +3,6 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
   font-family: sans-serif;
 }
 
@@ -15,14 +14,13 @@ body {
 /* ヘッダー */
 
 #header {
-  flex-shrink: 0;
 
   background: white;
+
   padding: 15px;
 
   box-shadow: 0 2px 4px rgba(0,0,0,.15);
 
-  position: relative;
   z-index: 1000;
 }
 
@@ -34,22 +32,28 @@ body {
   margin-top: 8px;
 }
 
-/* 達成率バー */
+/* 進捗バー */
 
 .progress {
+
   width: 100%;
   max-width: 400px;
+
   height: 20px;
 
   background: #ddd;
+
   border-radius: 10px;
 
   overflow: hidden;
+
   margin-top: 10px;
 }
 
 #progress-bar {
+
   height: 100%;
+
   width: 0%;
 
   background: #4caf50;
@@ -57,117 +61,151 @@ body {
   transition: width .5s;
 }
 
-/* 地図 */
+/* メインレイアウト */
 
-#map {
+#main-layout {
+
   flex: 1;
-  width: 100%;
+
+  display: flex;
+
+  overflow: hidden;
 }
 
 /* 都道府県一覧 */
 
 #sidebar {
-  position: absolute;
 
-  top: 110px;
-  left: 10px;
+  width: 230px;
 
-  z-index: 900;
+  overflow-y: auto;
 
   background: white;
 
   padding: 10px;
 
-  border-radius: 10px;
-
-  max-height: calc(100vh - 140px);
-
-  overflow-y: auto;
-
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  border-right: 1px solid #ddd;
 }
 
 #pref-list {
+
   list-style: none;
+
   margin: 0;
   padding: 0;
 }
 
 #pref-list li {
-  padding: 2px 0;
+
+  padding: 3px 0;
 }
 
-/* モーダル */
+/* 地図 */
 
-#modal {
-  position: fixed;
-  inset: 0;
+#map {
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(0,0,0,.6);
-
-  z-index: 9999;
+  flex: 1;
 }
 
-.hidden {
-  display: none !important;
-}
+/* 詳細パネル */
 
-.modal-content {
-  position: relative;
+#detail-panel {
 
-  background: white;
-
-  width: min(900px, 95vw);
-  max-height: 90vh;
+  width: 460px;
 
   overflow-y: auto;
 
-  border-radius: 10px;
+  background: white;
 
-  padding: 20px;
+  border-left: 1px solid #ddd;
 
-  z-index: 10000;
+  padding: 15px;
 }
 
-#close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+#spot-name {
+
+  margin-top: 0;
+}
+
+#counter {
+
+  margin-bottom: 10px;
+
+  font-weight: bold;
 }
 
 .controls {
+
   display: flex;
+
+  align-items: flex-start;
+
   gap: 10px;
-  align-items: center;
 }
 
 #tweet-container {
+
   flex: 1;
-  min-height: 350px;
+
+  min-height: 400px;
 
   display: flex;
+
   justify-content: center;
 }
 
 .twitter-tweet,
 .twitter-tweet-rendered {
+
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+#prev,
+#next {
+
+  height: 40px;
+
+  min-width: 40px;
+}
+
+.leaflet-popup-content {
+
+  min-width: 180px;
 }
 
 /* スマホ */
 
 @media (max-width: 768px) {
 
+  #main-layout {
+
+    flex-direction: column;
+  }
+
   #sidebar {
+
     display: none;
   }
 
+  #map {
+
+    height: 50vh;
+  }
+
+  #detail-panel {
+
+    width: auto;
+
+    height: 50vh;
+
+    border-left: none;
+
+    border-top: 1px solid #ddd;
+  }
+
   .controls {
+
     flex-direction: column;
   }
 }

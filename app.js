@@ -29,6 +29,7 @@ fetch("data.json")
     const prefs = new Set();
 
     data.forEach(location => {
+
       prefs.add(location.prefecture);
 
       const marker = L.marker([
@@ -39,6 +40,13 @@ fetch("data.json")
       marker.bindTooltip(location.name);
 
       marker.on("click", () => {
+
+        marker.bindPopup(`
+          <b>${location.name}</b><br>
+          ${location.prefecture}<br>
+          投稿 ${location.posts.length}件
+        `).openPopup();
+
         openSpot(location);
       });
     });
@@ -74,19 +82,19 @@ fetch("data.json")
 function openSpot(location) {
 
   currentPosts = location.posts;
+
   currentIndex = 0;
 
   document.getElementById("spot-name")
     .textContent =
     `${location.name} (${location.prefecture})`;
 
-  document.getElementById("modal")
-    .classList.remove("hidden");
-
   renderTweet();
 }
 
 function renderTweet() {
+
+  if (!currentPosts.length) return;
 
   document.getElementById("counter")
     .textContent =
@@ -107,6 +115,8 @@ function renderTweet() {
 
 document.getElementById("next").onclick = () => {
 
+  if (!currentPosts.length) return;
+
   currentIndex =
     (currentIndex + 1) %
     currentPosts.length;
@@ -116,6 +126,8 @@ document.getElementById("next").onclick = () => {
 
 document.getElementById("prev").onclick = () => {
 
+  if (!currentPosts.length) return;
+
   currentIndex =
     (currentIndex - 1 + currentPosts.length)
     % currentPosts.length;
@@ -123,8 +135,6 @@ document.getElementById("prev").onclick = () => {
   renderTweet();
 };
 
-document.getElementById("close").onclick = () => {
-
-  document.getElementById("modal")
-    .classList.add("hidden");
-};
+map.on("click", () => {
+  map.closePopup();
+});
