@@ -28,10 +28,10 @@ function setupMap() {
 
   if (!svgDoc) return;
 
-  if (!svgDoc.body.dataset.dragReady) {
-    svgDoc.body.dataset.dragReady = "true";
+  if (!svgRoot.dataset.dragReady) {
+    svgRoot.dataset.dragReady = "true";
 
-    svgDoc.addEventListener("mousedown", e => {
+    svgRoot.addEventListener("mousedown", e => {
       if (mapScale <= 1) return;
 
       isDragging = true;
