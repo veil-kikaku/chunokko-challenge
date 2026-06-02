@@ -38,17 +38,7 @@ function renderPrefHoverList() {
     "福岡","佐賀","長崎","熊本","大分","宮崎","鹿児島","沖縄"
   ];
 
-  const sortedPrefs = [...allPrefs].sort((a, b) => {
-    const countA = prefMap[a]?.length || 0;
-    const countB = prefMap[b]?.length || 0;
-
-    if (countA !== countB) {
-      return countB - countA;
-    }
-
-    return allPrefs.indexOf(a) - allPrefs.indexOf(b);
-  });
-
+  const sortedPrefs = [...allPrefs];
   const half = Math.ceil(sortedPrefs.length / 2);
   const left = sortedPrefs.slice(0, half);
   const right = sortedPrefs.slice(half);
