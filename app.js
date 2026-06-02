@@ -20,6 +20,8 @@ async function init() {
   } else {
     mapObject.addEventListener("load", setupMap);
   }
+  
+  setTimeout(setupMap, 500);
 }
 
 function setupMap() {
