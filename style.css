@@ -12,7 +12,7 @@ flex-direction:column;
 
 header{
 padding:15px;
-background:fffdf5;
+background:white;
 box-shadow:0 2px 5px rgba(0,0,0,.2);
 z-index:10;
 }
@@ -252,7 +252,7 @@ height:40%;
 }
 
 .spot-index{
-  background:#fff8e1;
+  background:#f7f7f7;
   border:1px solid #ddd;
   border-radius:10px;
   padding:10px 14px;
