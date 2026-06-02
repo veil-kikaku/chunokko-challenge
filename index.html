@@ -1,63 +1,52 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>47都道府県ちゅのっこチャレンジ</title>
+<meta charset="UTF-8">
+<title>47都道府県ちゅのっこチャレンジ</title>
 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet/dist/leaflet.css"
-  >
+<link rel="stylesheet" href="style.css">
 
-  <link rel="stylesheet" href="style.css">
+<script async src="https://platform.twitter.com/widgets.js"></script>
 </head>
 <body>
 
-  <div id="header">
-    <h1>🗾 47都道府県ちゅのっこチャレンジ</h1>
+<header>
 
-    <div id="stats"></div>
+<h1>🗾47都道府県ちゅのっこチャレンジ</h1>
 
-    <div class="progress">
-      <div id="progress-bar"></div>
-    </div>
-  </div>
+<div id="stats"></div>
 
-  <div id="main-layout">
+<div class="progress">
+<div id="progress-bar"></div>
+</div>
 
-    <div id="sidebar">
-      <h3>都道府県達成状況</h3>
-      <ul id="pref-list"></ul>
-    </div>
+</header>
 
-    <div id="map"></div>
+<div id="container">
 
-    <div id="detail-panel">
+<div id="map-container">
 
-      <h2 id="spot-name">
-        地図上のマーカーを選択してください
-      </h2>
+<object
+id="japan-map"
+type="image/svg+xml"
+data="japan.svg">
+</object>
 
-      <div id="counter"></div>
+</div>
 
-      <div class="controls">
+<aside id="side-panel">
 
-        <button id="prev">◀</button>
+<h2 id="pref-name">
+都道府県を選択
+</h2>
 
-        <div id="tweet-container"></div>
+<div id="post-list"></div>
 
-        <button id="next">▶</button>
+</aside>
 
-      </div>
+</div>
 
-    </div>
-
-  </div>
-
-  <script async src="https://platform.twitter.com/widgets.js"></script>
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="app.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>

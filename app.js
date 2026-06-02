@@ -1,136 +1,151 @@
-const map = L.map('map').setView([36.2, 138.2], 5);
+let spots = [];
 
-L.tileLayer(
-  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {
-    attribution: '&copy; OpenStreetMap'
-  }
-).addTo(map);
+const PREF_MAP = {
+  "北海道":"hokkaido",
+  "青森":"aomori",
+  "岩手":"iwate",
+  "宮城":"miyagi",
+  "秋田":"akita",
+  "山形":"yamagata",
+  "福島":"fukushima",
+  "茨城":"ibaraki",
+  "栃木":"tochigi",
+  "群馬":"gunma",
+  "埼玉":"saitama",
+  "千葉":"chiba",
+  "東京":"tokyo",
+  "神奈川":"kanagawa",
+  "新潟":"niigata",
+  "富山":"toyama",
+  "石川":"ishikawa",
+  "福井":"fukui",
+  "山梨":"yamanashi",
+  "長野":"nagano",
+  "岐阜":"gifu",
+  "静岡":"shizuoka",
+  "愛知":"aichi",
+  "三重":"mie",
+  "滋賀":"shiga",
+  "京都":"kyoto",
+  "大阪":"osaka",
+  "兵庫":"hyogo",
+  "奈良":"nara",
+  "和歌山":"wakayama",
+  "鳥取":"tottori",
+  "島根":"shimane",
+  "岡山":"okayama",
+  "広島":"hiroshima",
+  "山口":"yamaguchi",
+  "徳島":"tokushima",
+  "香川":"kagawa",
+  "愛媛":"ehime",
+  "高知":"kochi",
+  "福岡":"fukuoka",
+  "佐賀":"saga",
+  "長崎":"nagasaki",
+  "熊本":"kumamoto",
+  "大分":"oita",
+  "宮崎":"miyazaki",
+  "鹿児島":"kagoshima",
+  "沖縄":"okinawa"
+};
 
-let currentPosts = [];
-let currentIndex = 0;
+fetch("spots.json")
+.then(r=>r.json())
+.then(data=>{
 
-const allPrefs = [
-"北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
-"茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
-"新潟県","富山県","石川県","福井県","山梨県","長野県",
-"岐阜県","静岡県","愛知県","三重県",
-"滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県",
-"鳥取県","島根県","岡山県","広島県","山口県",
-"徳島県","香川県","愛媛県","高知県",
-"福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県",
-"沖縄県"
-];
+  spots = data;
 
-fetch("data.json")
-  .then(res => res.json())
-  .then(data => {
+  updateStats();
 
-    const prefs = new Set();
+  document
+    .getElementById("japan-map")
+    .addEventListener("load", setupMap);
 
+});
 
-    data.forEach(location => {
+function updateStats(){
 
-      prefs.add(location.prefecture);
+  const done =
+    [...new Set(
+      spots.map(x=>x.prefecture)
+    )].length;
 
-      const marker = L.marker([
-        location.lat,
-        location.lng
-      ]).addTo(map);
+  document.getElementById("stats").textContent =
+    `${done}/47都道府県`;
 
-      marker.bindTooltip(location.name);
+  document.getElementById("progress-bar").style.width =
+    `${done/47*100}%`;
+}
 
-      marker.bindPopup(`
-        <b>${location.name}</b><br>
-        ${location.prefecture}<br>
-        投稿 ${location.posts.length}件
-      `);
+function setupMap(){
 
-      marker.on("click", () => {
-        openSpot(location);
-      });
+  const svg =
+    document.getElementById("japan-map")
+    .contentDocument;
+
+  Object.entries(PREF_MAP).forEach(([jp,en])=>{
+
+    const pref =
+      svg.querySelector(`.${en}`);
+
+    if(!pref) return;
+
+    const posts =
+      spots.filter(
+        x=>x.prefecture===jp
+      );
+
+    if(posts.length){
+      pref.classList.add("completed");
+    }
+
+    pref.addEventListener("click",()=>{
+
+      showPref(jp);
+
     });
 
-    const completed = prefs.size;
-
-    const percent =
-      ((completed / 47) * 100).toFixed(1);
-
-    document.getElementById("stats").innerHTML =
-      `${completed} / 47 都道府県 (${percent}%)`;
-
-    document.getElementById("progress-bar")
-      .style.width = percent + "%";
-
-    const prefList =
-      document.getElementById("pref-list");
-
-    allPrefs.forEach(pref => {
-
-      const li =
-        document.createElement("li");
-
-      li.textContent =
-        prefs.has(pref)
-          ? `✅ ${pref}`
-          : `⬜ ${pref}`;
-
-      prefList.appendChild(li);
-    });
   });
 
-function openSpot(location) {
-
-  currentPosts = location.posts;
-
-  currentIndex = 0;
-
-  document.getElementById("spot-name")
-    .textContent =
-    `${location.name} (${location.prefecture})`;
-
-  renderTweet();
 }
 
-function renderTweet() {
+function showPref(prefName){
 
-  if (!currentPosts.length) return;
+  document.getElementById("pref-name").textContent =
+    prefName;
 
-  document.getElementById("counter")
-    .textContent =
-    `${currentIndex + 1} / ${currentPosts.length}`;
+  const list =
+    document.getElementById("post-list");
 
-  document.getElementById(
-    "tweet-container"
-  ).innerHTML = `
-    <blockquote class="twitter-tweet">
-      <a href="${currentPosts[currentIndex]}"></a>
-    </blockquote>
-  `;
+  list.innerHTML = "";
 
-  if (window.twttr) {
+  const posts =
+    spots.filter(
+      x=>x.prefecture===prefName
+    );
+
+  posts.forEach(post=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className = "post";
+
+    div.innerHTML =
+      `<h3>${post.spot}</h3>
+       <blockquote
+       class="twitter-tweet">
+       <a href="${post.url}">
+       </a>
+       </blockquote>`;
+
+    list.appendChild(div);
+
+  });
+
+  if(window.twttr){
     window.twttr.widgets.load();
   }
+
 }
-
-document.getElementById("next").onclick = () => {
-
-  if (!currentPosts.length) return;
-
-  currentIndex =
-    (currentIndex + 1) %
-    currentPosts.length;
-
-  renderTweet();
-};
-
-document.getElementById("prev").onclick = () => {
-
-  if (!currentPosts.length) return;
-
-  currentIndex =
-    (currentIndex - 1 + currentPosts.length)
-    % currentPosts.length;
-
-  renderTweet();
-};
