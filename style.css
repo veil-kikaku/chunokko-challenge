@@ -193,7 +193,7 @@ height:40%;
 #map-legend{
   position:absolute;
   top:20px;
-  right:260px;
+  right:250px;
   z-index:100;
 
   background:rgba(255,255,255,.75);
