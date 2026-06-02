@@ -24,7 +24,8 @@ async function init() {
 }
 
 function renderPrefHoverList() {
-  const container = document.getElementById("pref-hover-list");
+  const container =
+    document.getElementById("pref-hover-list");
 
   const allPrefs = [
     "北海道","青森","岩手","宮城","秋田","山形","福島",
@@ -37,7 +38,18 @@ function renderPrefHoverList() {
     "福岡","佐賀","長崎","熊本","大分","宮崎","鹿児島","沖縄"
   ];
 
-  container.innerHTML = allPrefs.map(prefName => {
+  const sortedPrefs = [...allPrefs].sort((a, b) => {
+    const countA = prefMap[a]?.length || 0;
+    const countB = prefMap[b]?.length || 0;
+
+    if (countA !== countB) {
+      return countB - countA;
+    }
+
+    return a.localeCompare(b, "ja");
+  });
+
+  container.innerHTML = sortedPrefs.map(prefName => {
     const count = prefMap[prefName]?.length || 0;
 
     return `
