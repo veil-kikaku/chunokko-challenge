@@ -284,24 +284,35 @@ height:40%;
   top:20px;
   z-index:120;
 
-  display:flex;
-  gap:6px;
-
   background:rgba(255,255,255,.8);
   padding:6px;
   border-radius:10px;
   box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
 
+.zoom-buttons{
+  display:flex;
+  gap:4px;
+  margin-bottom:4px;
+}
+
 #zoom-controls button{
   border:1px solid #aaa;
   background:#fff;
   border-radius:6px;
-  padding:4px 8px;
   cursor:pointer;
   font-weight:bold;
 }
 
-#zoom-controls button:hover{
-  background:#f0f0f0;
+#zoom-in,
+#zoom-out{
+  width:32px;
+  height:32px;
+  font-size:18px;
+}
+
+#zoom-reset{
+  width:100%;
+  font-size:12px;
+  padding:4px;
 }

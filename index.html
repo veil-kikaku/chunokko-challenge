@@ -26,37 +26,41 @@
 
 <div id="map-container">
 
-<div id="map-tooltip"></div>
+  <div id="map-tooltip"></div>
 
-<div id="map-legend">
-
-  <div class="legend-title">投稿数</div>
-  <div><span class="legend-box none"></span>0件</div>
-  <div><span class="legend-box lv1"></span>1〜2件</div>
-  <div><span class="legend-box lv2"></span>3〜4件</div>
-  <div><span class="legend-box lv3"></span>5件以上</div>
-
-  <div class="legend-separator"></div>  
-
-  <div class="legend-title">選択状態</div>
-  <div><span class="legend-box selected"></span>選択中</div>
-
-  <div class="legend-separator"></div>
-  <div id="total-posts"></div>
-  
   <div id="zoom-controls">
-    <button id="zoom-in">＋</button>
-    <button id="zoom-out">－</button>
+    <div class="zoom-buttons">
+      <button id="zoom-in">＋</button>
+      <button id="zoom-out">－</button>
+    </div>
+
     <button id="zoom-reset">リセット</button>
   </div>
 
-</div>
+  <div id="map-legend">
 
-<object
-id="japan-map"
-type="image/svg+xml"
-data="japan.svg">
-</object>
+    <div class="legend-title">投稿数</div>
+    <div><span class="legend-box none"></span>0件</div>
+    <div><span class="legend-box lv1"></span>1〜2件</div>
+    <div><span class="legend-box lv2"></span>3〜4件</div>
+    <div><span class="legend-box lv3"></span>5件以上</div>
+
+    <div class="legend-separator"></div>
+
+    <div class="legend-title">選択状態</div>
+    <div><span class="legend-box selected"></span>選択中</div>
+
+    <div class="legend-separator"></div>
+
+    <div id="total-posts"></div>
+
+  </div>
+
+  <object
+    id="japan-map"
+    type="image/svg+xml"
+    data="japan.svg">
+  </object>
 
 </div>
 
