@@ -160,7 +160,7 @@ height:40%;
 }
 
 #map-tooltip{
-  position:fixed;
+  position:absolute;
   display:none;
   pointer-events:none;
   z-index:9999;
