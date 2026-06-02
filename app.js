@@ -49,14 +49,38 @@ function renderPrefHoverList() {
     return a.localeCompare(b, "ja");
   });
 
-  container.innerHTML = sortedPrefs.map(prefName => {
-    const count = prefMap[prefName]?.length || 0;
+  const half = Math.ceil(sortedPrefs.length / 2);
+  const left = sortedPrefs.slice(0, half);
+  const right = sortedPrefs.slice(half);
+
+  container.innerHTML = left.map((prefName, i) => {
+    const leftCount = prefMap[prefName]?.length || 0;
+
+    const rightPref = right[i];
+    const rightCount =
+      rightPref
+        ? (prefMap[rightPref]?.length || 0)
+        : null;
 
     return `
-      <div
-        class="pref-hover-item"
-        data-pref="${prefName}">
-        ${prefName}（${count}件）
+      <div class="pref-row">
+        <div
+          class="pref-hover-item"
+          data-pref="${prefName}">
+          ${prefName}（${leftCount}件）
+        </div>
+
+        ${
+          rightPref
+            ? `
+              <div
+                class="pref-hover-item"
+                data-pref="${rightPref}">
+                ${rightPref}（${rightCount}件）
+              </div>
+            `
+            : '<div></div>'
+        }
       </div>
     `;
   }).join("");
