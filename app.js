@@ -48,6 +48,24 @@ function setupMap() {
         .getElementById("japan-map")
         .classList.add("dragging");
     });
+
+    svgDoc.addEventListener("mousemove", e => {
+      if (!isDragging) return;
+
+      mapX = e.clientX - startX;
+      mapY = e.clientY - startY;
+
+      updateMapTransform();
+    });
+
+    svgDoc.addEventListener("mouseup", () => {
+      isDragging = false;
+
+      document
+        .getElementById("japan-map")
+        .classList.remove("dragging");
+    });
+
   }
 
   svgDoc
@@ -282,15 +300,11 @@ document.getElementById("zoom-reset").addEventListener("click", () => {
 function moveTooltip(e) {
   const tooltip = document.getElementById("map-tooltip");
 
-  const mapRect = document
-    .getElementById("map-container")
-    .getBoundingClientRect();
-
   tooltip.style.left =
-    `${e.clientX - mapRect.left + 16}px`;
+    `${e.clientX + 16}px`;
 
   tooltip.style.top =
-    `${e.clientY - mapRect.top + 16}px`;
+    `${e.clientY + 16}px`;
 }
 
 init();
