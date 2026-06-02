@@ -116,7 +116,7 @@ height:40%;
 }
 
 .prefecture.selected{
-  stroke:#e53935 !important;
+  stroke:#ff9800 !important;
   stroke-width:3 !important;
 }
 
@@ -182,7 +182,7 @@ height:40%;
 }
 
 .pref-hover-item.selected{
-  box-shadow:0 0 0 3px #e53935;
+  box-shadow:0 0 0 3px #ff9800;
   position:relative;
   z-index:2;
 }
@@ -236,7 +236,7 @@ height:40%;
 
 .legend-box.selected{
   background:#fff;
-  border:3px solid #e53935;
+  border:3px solid #ff9800;
   box-sizing:border-box;
 }
 

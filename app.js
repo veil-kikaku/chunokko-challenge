@@ -110,7 +110,7 @@ function setupMap() {
       }
 
       .prefecture.selected{
-        stroke:#e53935 !important;
+        stroke:#ff9800 !important;
         stroke-width:3 !important;
       }
     `;
