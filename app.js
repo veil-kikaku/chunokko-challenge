@@ -46,7 +46,7 @@ function renderPrefHoverList() {
       return countB - countA;
     }
 
-    return a.localeCompare(b, "ja");
+    return allPrefs.indexOf(a) - allPrefs.indexOf(b);
   });
 
   const half = Math.ceil(sortedPrefs.length / 2);
