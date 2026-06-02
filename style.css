@@ -152,23 +152,32 @@ height:40%;
   );
 }
 
-#map-tooltip{
+#pref-hover-list{
   position:absolute;
   right:20px;
   bottom:20px;
-  display:none;
-  pointer-events:none;
-  z-index:9999;
+  z-index:110;
 
-  background:#fff;
-  border:2px solid #4caf50;
-  border-radius:8px;
-  padding:8px 12px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(4px);
+  padding:8px 10px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
 
-  font-weight:bold;
-  box-shadow:0 3px 10px rgba(0,0,0,.25);
+  font-size:13px;
+  max-height:240px;
+  overflow-y:auto;
+}
 
-  white-space:nowrap;
+.pref-hover-item{
+  padding:3px 6px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.pref-hover-item.active{
+  background:#fff3cd;
+  outline:2px solid #fb8c00;
 }
 
 #map-legend{
@@ -326,4 +335,10 @@ height:40%;
 
 #japan-map.dragging{
   cursor:grabbing;
+}
+
+.prefecture.hover-linked{
+  filter:brightness(1.25);
+  stroke:#fb8c00 !important;
+  stroke-width:3 !important;
 }

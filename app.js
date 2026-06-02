@@ -12,6 +12,7 @@ async function init() {
   });
 
   updateStats();
+  renderPrefHoverList();
 
   const mapObject = document.getElementById("japan-map");
 
@@ -20,6 +21,24 @@ async function init() {
   setTimeout(setupMap, 100);
   setTimeout(setupMap, 500);
   setTimeout(setupMap, 1000);
+}
+
+function renderPrefHoverList() {
+  const container = document.getElementById("pref-hover-list");
+
+  const prefs = Object.keys(prefMap).sort();
+
+  container.innerHTML = prefs.map(prefName => {
+    const count = prefMap[prefName]?.length || 0;
+
+    return `
+      <div
+        class="pref-hover-item"
+        data-pref="${prefName}">
+        ${prefName}（${count}件）
+      </div>
+    `;
+  }).join("");
 }
 
 function setupMap() {
@@ -31,6 +50,24 @@ function setupMap() {
   const svgRoot = svgDoc.querySelector("svg");
 
   if (!svgRoot) return;
+
+  if (!svgDoc.getElementById("hover-style")) {
+    const style = svgDoc.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "style"
+    );
+
+    style.id = "hover-style";
+    style.textContent = `
+      .prefecture.hover-linked{
+        filter:brightness(1.25);
+        stroke:#fb8c00 !important;
+        stroke-width:3 !important;
+      }
+    `;
+
+    svgRoot.appendChild(style);
+  }
 
   if (!svgRoot.dataset.dragReady) {
     svgRoot.dataset.dragReady = "true";
@@ -92,16 +129,13 @@ function setupMap() {
       pref.onmouseenter = e => {
         if (isDragging) return;
 
-        const tooltip = document.getElementById("map-tooltip");
-
-        tooltip.textContent = `${prefName} (${count}件)`;
-        tooltip.style.display = "block";
+        setHoverPrefecture(prefName);
       };
 
       pref.onmousemove = null;
 
       pref.onmouseleave = () => {
-        document.getElementById("map-tooltip").style.display = "none";
+        setHoverPrefecture("");
       };
 
       pref.classList.remove(
@@ -139,6 +173,52 @@ function setupMap() {
       showPrefecture("東京");
     }
   }
+  
+  document
+    .querySelectorAll(".pref-hover-item")
+    .forEach(item => {
+      item.onmouseenter = () => {
+        const targetName = item.dataset.pref;
+        const svgDoc =
+          document.getElementById("japan-map").contentDocument;
+
+        setHoverPrefecture(targetName);
+
+        svgDoc
+          ?.querySelectorAll(".prefecture")
+          .forEach(pref => {
+            const prefName = pref.dataset.name;
+            pref.classList.toggle(
+              "hover-linked",
+              prefName === targetName
+            );
+          });
+      };
+
+      item.onmouseleave = () => {
+        const svgDoc =
+          document.getElementById("japan-map").contentDocument;
+
+        setHoverPrefecture("");
+
+        svgDoc
+          ?.querySelectorAll(".hover-linked")
+          .forEach(pref => {
+            pref.classList.remove("hover-linked");
+          });
+      };
+    });
+}
+
+function setHoverPrefecture(prefName) {
+  document
+    .querySelectorAll(".pref-hover-item")
+    .forEach(item => {
+      item.classList.toggle(
+        "active",
+        item.dataset.pref === prefName
+      );
+    });
 }
 
 function updateStats() {
