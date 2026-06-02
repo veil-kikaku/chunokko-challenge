@@ -43,6 +43,7 @@ overflow:hidden;
 }
 
 #map-container{
+  flex:1;
   background:linear-gradient(
     to bottom,
     #eaf9ff,
