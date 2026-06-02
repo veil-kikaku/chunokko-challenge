@@ -53,8 +53,11 @@ function setupMap() {
 
         tooltip.textContent = `${prefName} (${count}件)`;
         tooltip.style.display = "block";
-        tooltip.style.left = `${e.clientX - rect.left + 12}px`;
-        tooltip.style.top = `${e.clientY - rect.top + 12}px`;
+        tooltip.style.left =
+          `${e.clientX - rect.left + 16}px`;
+
+        tooltip.style.top =
+          `${e.clientY - rect.top + 16}px`;
       };
 
       pref.onmousemove = e => {
@@ -63,8 +66,11 @@ function setupMap() {
           .getElementById("map-container")
           .getBoundingClientRect();
 
-        tooltip.style.left = `${e.clientX - rect.left + 12}px`;
-        tooltip.style.top = `${e.clientY - rect.top + 12}px`;
+        tooltip.style.left =
+          `${e.clientX - rect.left + 16}px`;
+
+        tooltip.style.top =
+          `${e.clientY - rect.top + 16}px`;
       };
 
       pref.onmouseleave = () => {

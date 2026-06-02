@@ -128,12 +128,12 @@ height:40%;
 }
 
 .prefecture:hover {
-  stroke:#ffffff !important;
+  stroke:#ff9800 !important;
   stroke-width:6 !important;
 }
 
 .prefecture.selected{
-  stroke:#ff9800 !important;
+  stroke:#ff5722 !important;
   stroke-width:6 !important;
 }
 
@@ -176,4 +176,7 @@ height:40%;
 
   font-weight:bold;
   box-shadow:0 3px 10px rgba(0,0,0,.25);
+
+  max-width:200px;
+  white-space:nowrap;
 }
