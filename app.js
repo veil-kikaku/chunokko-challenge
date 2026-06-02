@@ -58,9 +58,9 @@ function setupMap() {
         }
       }
 
-      pref.addEventListener("click", () => {
+      pref.onclick = () => {
         showPrefecture(prefName);
-      });
+      };
     });
 }
 
