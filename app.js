@@ -54,7 +54,7 @@ function setupMap() {
       mapY += e.movementY;
 
       const maxX = (mapScale - 1) * 400;
-      const maxY = (mapScale - 1) * 300;
+      const maxY = (mapScale - 1) * 450;
 
       mapX = Math.max(-maxX, Math.min(maxX, mapX));
       mapY = Math.max(-maxY, Math.min(maxY, mapY));
