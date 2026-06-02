@@ -55,10 +55,10 @@ function setupMap() {
         tooltip.style.display = "block";
 
         tooltip.style.left =
-          `${objectRect.left + e.clientX * mapScale + 16}px`;
+          `${objectRect.left + e.clientX * mapScale + mapX + 16}px`;
 
         tooltip.style.top =
-          `${objectRect.top + e.clientY * mapScale + 16}px`;
+          `${objectRect.top + e.clientY * mapScale + mapY + 16}px`;
       };
 
       pref.onmousemove = e => {
@@ -68,10 +68,10 @@ function setupMap() {
           .getBoundingClientRect();
 
         tooltip.style.left =
-          `${objectRect.left + e.clientX * mapScale + 16}px`;
+          `${objectRect.left + e.clientX * mapScale + mapX + 16}px`;
 
         tooltip.style.top =
-          `${objectRect.top + e.clientY * mapScale + 16}px`;
+          `${objectRect.top + e.clientY * mapScale + mapY + 16}px`;
       };
 
       pref.onmouseleave = () => {
@@ -213,25 +213,69 @@ function showPrefecture(prefName) {
 }
 
 let mapScale = 1;
+let mapX = 0;
+let mapY = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
 
-function updateMapZoom() {
-  document.getElementById("japan-map").style.transform =
-    `scale(${mapScale})`;
+function updateMapTransform() {
+  const map = document.getElementById("japan-map");
+
+  map.style.transform =
+    `translate(${mapX}px, ${mapY}px) scale(${mapScale})`;
+
+  document.getElementById("zoom-rate").textContent =
+    `${Math.round(mapScale * 100)}%`;
 }
 
 document.getElementById("zoom-in").addEventListener("click", () => {
   mapScale = Math.min(mapScale + 0.2, 2.5);
-  updateMapZoom();
+  updateMapTransform();
 });
 
 document.getElementById("zoom-out").addEventListener("click", () => {
   mapScale = Math.max(mapScale - 0.2, 1);
-  updateMapZoom();
+
+  if (mapScale === 1) {
+    mapX = 0;
+    mapY = 0;
+  }
+
+  updateMapTransform();
 });
 
 document.getElementById("zoom-reset").addEventListener("click", () => {
   mapScale = 1;
-  updateMapZoom();
+  mapX = 0;
+  mapY = 0;
+  updateMapTransform();
+});
+
+const mapObject = document.getElementById("japan-map");
+
+mapObject.addEventListener("mousedown", e => {
+  if (mapScale <= 1) return;
+
+  isDragging = true;
+  startX = e.clientX - mapX;
+  startY = e.clientY - mapY;
+
+  mapObject.classList.add("dragging");
+});
+
+window.addEventListener("mousemove", e => {
+  if (!isDragging) return;
+
+  mapX = e.clientX - startX;
+  mapY = e.clientY - startY;
+
+  updateMapTransform();
+});
+
+window.addEventListener("mouseup", () => {
+  isDragging = false;
+  mapObject.classList.remove("dragging");
 });
 
 init();

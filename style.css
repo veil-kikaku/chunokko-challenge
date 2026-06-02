@@ -316,3 +316,18 @@ height:40%;
   font-size:12px;
   padding:4px;
 }
+
+#zoom-rate{
+  text-align:center;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:4px;
+}
+
+#japan-map{
+  cursor:grab;
+}
+
+#japan-map.dragging{
+  cursor:grabbing;
+}
