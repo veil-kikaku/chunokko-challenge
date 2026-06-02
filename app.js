@@ -127,6 +127,9 @@ function updateStats() {
 
   document.getElementById("progress-bar").style.width =
     `${percent}%`;
+
+  document.getElementById("total-posts").textContent =
+    `総投稿数 ${spots.length}件`;
 }
 
 function selectPrefecture(pref) {
