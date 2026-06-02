@@ -38,42 +38,33 @@ function renderPrefHoverList() {
     "福岡","佐賀","長崎","熊本","大分","宮崎","鹿児島","沖縄"
   ];
 
-  const sortedPrefs = [...allPrefs];
-  const half = Math.ceil(sortedPrefs.length / 2);
-  const left = sortedPrefs.slice(0, half);
-  const right = sortedPrefs.slice(half);
+  const rows = [];
 
-  container.innerHTML = left.map((prefName, i) => {
-    const leftCount = prefMap[prefName]?.length || 0;
+  for (let i = 0; i < allPrefs.length; i += 2) {
+    rows.push([
+      allPrefs[i],
+      allPrefs[i + 1] || null
+    ]);
+  }
 
-    const rightPref = right[i];
-    const rightCount =
-      rightPref
-        ? (prefMap[rightPref]?.length || 0)
-        : null;
+  container.innerHTML = rows.map(([left, right]) => `
+    <div class="pref-row">
+      ${renderPrefItem(left)}
+      ${right ? renderPrefItem(right) : '<div></div>'}
+    </div>
+  `).join("");
+}
 
-    return `
-      <div class="pref-row">
-        <div
-          class="pref-hover-item"
-          data-pref="${prefName}">
-          ${prefName}（${leftCount}件）
-        </div>
+function renderPrefItem(pref) {
+  const count = prefMap[pref]?.length || 0;
 
-        ${
-          rightPref
-            ? `
-              <div
-                class="pref-hover-item"
-                data-pref="${rightPref}">
-                ${rightPref}（${rightCount}件）
-              </div>
-            `
-            : '<div></div>'
-        }
-      </div>
-    `;
-  }).join("");
+  return `
+    <div
+      class="pref-hover-item"
+      data-pref="${pref}">
+      ${pref} (${count}件)
+    </div>
+  `;
 }
 
 function setupMap() {
