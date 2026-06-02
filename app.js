@@ -1,151 +1,107 @@
 let spots = [];
+let prefMap = {};
 
-const PREF_MAP = {
-  "北海道":"hokkaido",
-  "青森":"aomori",
-  "岩手":"iwate",
-  "宮城":"miyagi",
-  "秋田":"akita",
-  "山形":"yamagata",
-  "福島":"fukushima",
-  "茨城":"ibaraki",
-  "栃木":"tochigi",
-  "群馬":"gunma",
-  "埼玉":"saitama",
-  "千葉":"chiba",
-  "東京":"tokyo",
-  "神奈川":"kanagawa",
-  "新潟":"niigata",
-  "富山":"toyama",
-  "石川":"ishikawa",
-  "福井":"fukui",
-  "山梨":"yamanashi",
-  "長野":"nagano",
-  "岐阜":"gifu",
-  "静岡":"shizuoka",
-  "愛知":"aichi",
-  "三重":"mie",
-  "滋賀":"shiga",
-  "京都":"kyoto",
-  "大阪":"osaka",
-  "兵庫":"hyogo",
-  "奈良":"nara",
-  "和歌山":"wakayama",
-  "鳥取":"tottori",
-  "島根":"shimane",
-  "岡山":"okayama",
-  "広島":"hiroshima",
-  "山口":"yamaguchi",
-  "徳島":"tokushima",
-  "香川":"kagawa",
-  "愛媛":"ehime",
-  "高知":"kochi",
-  "福岡":"fukuoka",
-  "佐賀":"saga",
-  "長崎":"nagasaki",
-  "熊本":"kumamoto",
-  "大分":"oita",
-  "宮崎":"miyazaki",
-  "鹿児島":"kagoshima",
-  "沖縄":"okinawa"
-};
+async function init() {
 
-fetch("spots.json")
-.then(r=>r.json())
-.then(data=>{
+  spots = await fetch("spots.json").then(r => r.json());
 
-  spots = data;
+  spots.forEach(item => {
+    if (!prefMap[item.prefecture]) {
+      prefMap[item.prefecture] = [];
+    }
+    prefMap[item.prefecture].push(item);
+  });
 
   updateStats();
 
-  document
-    .getElementById("japan-map")
-    .addEventListener("load", setupMap);
+  const mapObject = document.getElementById("japan-map");
 
-});
+  mapObject.addEventListener("load", () => {
 
-function updateStats(){
+    const svgDoc = mapObject.contentDocument;
 
-  const done =
-    [...new Set(
-      spots.map(x=>x.prefecture)
-    )].length;
+    svgDoc
+      .querySelectorAll(".prefecture")
+      .forEach(pref => {
 
-  document.getElementById("stats").textContent =
-    `${done}/47都道府県`;
+        const prefName =
+          pref.querySelector("title")?.textContent.trim() || "";
 
-  document.getElementById("progress-bar").style.width =
-    `${done/47*100}%`;
-}
+        const count = prefMap[prefName]?.length || 0;
 
-function setupMap(){
+        if (count > 0) {
 
-  const svg =
-    document.getElementById("japan-map")
-    .contentDocument;
+          pref.classList.add("completed");
 
-  Object.entries(PREF_MAP).forEach(([jp,en])=>{
+          if (count >= 10) {
+            pref.classList.add("lv4");
+          } else if (count >= 5) {
+            pref.classList.add("lv3");
+          } else if (count >= 3) {
+            pref.classList.add("lv2");
+          } else {
+            pref.classList.add("lv1");
+          }
+        }
 
-    const pref =
-      svg.querySelector(`.${en}`);
+        pref.addEventListener("click", () => {
+          showPrefecture(prefName);
+        });
 
-    if(!pref) return;
-
-    const posts =
-      spots.filter(
-        x=>x.prefecture===jp
-      );
-
-    if(posts.length){
-      pref.classList.add("completed");
-    }
-
-    pref.addEventListener("click",()=>{
-
-      showPref(jp);
-
-    });
+      });
 
   });
 
 }
 
-function showPref(prefName){
+function updateStats() {
+
+  const completed = Object.keys(prefMap).length;
+  const total = 47;
+
+  const percent =
+    ((completed / total) * 100).toFixed(1);
+
+  document.getElementById("stats").textContent =
+    `${completed} / ${total} 都道府県 (${percent}%)`;
+
+  document.getElementById("progress-bar").style.width =
+    `${percent}%`;
+}
+
+function showPrefecture(prefName) {
 
   document.getElementById("pref-name").textContent =
     prefName;
 
-  const list =
+  const posts = prefMap[prefName] || [];
+
+  const container =
     document.getElementById("post-list");
 
-  list.innerHTML = "";
+  if (posts.length === 0) {
 
-  const posts =
-    spots.filter(
-      x=>x.prefecture===prefName
-    );
+    container.innerHTML =
+      '<div class="empty">投稿はまだありません</div>';
 
-  posts.forEach(post=>{
-
-    const div =
-      document.createElement("div");
-
-    div.className = "post";
-
-    div.innerHTML =
-      `<h3>${post.spot}</h3>
-       <blockquote
-       class="twitter-tweet">
-       <a href="${post.url}">
-       </a>
-       </blockquote>`;
-
-    list.appendChild(div);
-
-  });
-
-  if(window.twttr){
-    window.twttr.widgets.load();
+    return;
   }
 
+  container.innerHTML = posts.map(post => `
+    <div class="post">
+      <h3>${post.spot}</h3>
+
+      <blockquote
+        class="twitter-tweet"
+        data-theme="light">
+        <a href="${post.url}"></a>
+      </blockquote>
+    </div>
+  `).join("");
+
+  if (window.twttr?.widgets) {
+    window.twttr.widgets.load(container);
+  }
 }
+
+init();

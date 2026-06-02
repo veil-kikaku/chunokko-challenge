@@ -86,3 +86,41 @@ height:40%;
 }
 
 }
+
+.lv1 {
+  fill: #b7e4c7 !important;
+}
+
+.lv2 {
+  fill: #74c69d !important;
+}
+
+.lv3 {
+  fill: #2d6a4f !important;
+}
+
+.lv4 {
+  fill: #081c15 !important;
+}
+
+.empty{
+  padding:20px;
+  text-align:center;
+  color:#888;
+}
+
+.post{
+  margin-bottom:24px;
+}
+
+.post h3{
+  margin-bottom:8px;
+}
+
+#side-panel{
+  scrollbar-width:none;
+}
+
+#side-panel::-webkit-scrollbar{
+  display:none;
+}
