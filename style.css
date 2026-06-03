@@ -11,18 +11,27 @@ flex-direction:column;
 }
 
 header{
-padding:15px;
-background:white;
-box-shadow:0 2px 5px rgba(0,0,0,.2);
-z-index:10;
+  padding:8px 15px;
+  background:white;
+  box-shadow:0 2px 5px rgba(0,0,0,.2);
+  z-index:10;
+}
+
+header h1{
+  margin:0 0 6px;
+  font-size:28px;
+}
+
+#stats{
+  font-size:14px;
 }
 
 .progress{
-height:20px;
-background:#ddd;
-border-radius:10px;
-overflow:hidden;
-margin-top:10px;
+  height:14px;
+  background:#ddd;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:6px;
 }
 
 #progress-bar{
