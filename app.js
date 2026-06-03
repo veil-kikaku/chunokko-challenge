@@ -195,17 +195,9 @@ function setupMap() {
     });
 
   if (!svgDoc.querySelector(".selected")) {
-    const hokkaido =
-      [...svgDoc.querySelectorAll(".prefecture")]
-        .find(p => p.classList.contains("hokkaido"));
-
-    if (hokkaido) {
-      selectPrefecture(hokkaido);
-      showPrefecture("北海道");
-      setSelectedPrefecture("北海道");
-    }
+    showWelcomePage();
   }
-  
+
   document
     .querySelectorAll(".pref-hover-item")
     .forEach(item => {
@@ -309,6 +301,75 @@ function selectPrefecture(pref) {
     .forEach(el => el.classList.remove("selected"));
 
   pref.classList.add("selected");
+}
+
+function showWelcomePage() {
+  const completed = Object.keys(prefMap).length;
+  const total = 47;
+  const percent = ((completed / total) * 100).toFixed(1);
+
+  const completedPrefs = Object.keys(prefMap)
+    .sort((a, b) => {
+      const allPrefs = [
+        "北海道","青森","岩手","宮城","秋田","山形","福島",
+        "茨城","栃木","群馬","埼玉","千葉","東京","神奈川",
+        "新潟","富山","石川","福井","山梨","長野",
+        "岐阜","静岡","愛知","三重",
+        "滋賀","京都","大阪","兵庫","奈良","和歌山",
+        "鳥取","島根","岡山","広島","山口",
+        "徳島","香川","愛媛","高知",
+        "福岡","佐賀","長崎","熊本","大分","宮崎","鹿児島","沖縄"
+      ];
+
+      return allPrefs.indexOf(a) - allPrefs.indexOf(b);
+    });
+
+  document.getElementById("pref-name").textContent =
+    "47都道府県ちゅのっこチャレンジ";
+
+  document.getElementById("post-list").innerHTML = `
+    <div class="welcome">
+      <h3>企画について</h3>
+
+      <p>
+        ちゅのっこ達が日本全国の名所・観光地を巡る企画です。
+      </p>
+
+      <p>
+        地図または都道府県一覧から都道府県を選ぶと、
+        投稿されたスポットを見ることができます。
+      </p>
+
+      <div class="welcome-stats">
+        現在 ${completed} / ${total} 都道府県達成（${percent}%）
+      </div>
+
+      <h3>達成済み都道府県</h3>
+
+      <div class="completed-list">
+        ${
+          completedPrefs.map(pref => `
+            <button onclick="
+              const svgDoc =
+                document.getElementById('japan-map').contentDocument;
+
+              const targetPref =
+                [...svgDoc.querySelectorAll('.prefecture')]
+                  .find(p => p.dataset.name === '${pref}');
+
+              if (targetPref) {
+                selectPrefecture(targetPref);
+                showPrefecture('${pref}');
+                setSelectedPrefecture('${pref}');
+              }
+            ">
+              ${pref}（${prefMap[pref].length}件）
+            </button>
+          `).join("")
+        }
+      </div>
+    </div>
+  `;
 }
 
 function showPrefecture(prefName) {
