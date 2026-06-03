@@ -308,22 +308,6 @@ function showWelcomePage() {
   const total = 47;
   const percent = ((completed / total) * 100).toFixed(1);
 
-  const completedPrefs = Object.keys(prefMap)
-    .sort((a, b) => {
-      const allPrefs = [
-        "北海道","青森","岩手","宮城","秋田","山形","福島",
-        "茨城","栃木","群馬","埼玉","千葉","東京","神奈川",
-        "新潟","富山","石川","福井","山梨","長野",
-        "岐阜","静岡","愛知","三重",
-        "滋賀","京都","大阪","兵庫","奈良","和歌山",
-        "鳥取","島根","岡山","広島","山口",
-        "徳島","香川","愛媛","高知",
-        "福岡","佐賀","長崎","熊本","大分","宮崎","鹿児島","沖縄"
-      ];
-
-      return allPrefs.indexOf(a) - allPrefs.indexOf(b);
-    });
-
   document.getElementById("pref-name").textContent =
     "47都道府県ちゅのっこチャレンジ";
 
@@ -332,52 +316,44 @@ function showWelcomePage() {
       <h3>企画について</h3>
 
       <p>
-        ちゅのっこ達が日本全国の名所・観光地を巡る企画です。
+        ちゅのっこ達がちゅのグッズと共に日本全国の名所や観光地を巡って全国制覇を目指す企画です。
       </p>
 
       <p>
-        地図または都道府県一覧から都道府県を選ぶと、
-        投稿されたスポットを見ることができます。
+        募集期間：2026/06/01～2026/06/10
       </p>
 
       <div class="welcome-stats">
         現在 ${completed} / ${total} 都道府県達成（${percent}%）
       </div>
 
+      <blockquote
+        class="twitter-tweet"
+        data-theme="light">
+        <a href="https://x.com/muiKikaku/status/2061402454848331961"></a>
+      </blockquote>
+
       <div class="welcome-links">
         <a
           href="https://x.com/search?q=%2347都道府県ちゅのっこチャレンジ&src=typed_query&f=live"
-          target="_blank">
+          target="_blank"
+          rel="noopener noreferrer">
           #47都道府県ちゅのっこチャレンジ
         </a>
       </div>
 
-      <h3>達成済み都道府県</h3>
-
-      <div class="completed-list">
-        ${
-          completedPrefs.map(pref => `
-            <button onclick="
-              const svgDoc =
-                document.getElementById('japan-map').contentDocument;
-
-              const targetPref =
-                [...svgDoc.querySelectorAll('.prefecture')]
-                  .find(p => p.dataset.name === '${pref}');
-
-              if (targetPref) {
-                selectPrefecture(targetPref);
-                showPrefecture('${pref}');
-                setSelectedPrefecture('${pref}');
-              }
-            ">
-              ${pref}（${prefMap[pref].length}件）
-            </button>
-          `).join("")
-        }
-      </div>
+      <p>
+        地図または都道府県一覧から都道府県を選ぶと、
+        投稿されたスポットを見ることができます。
+      </p>
     </div>
   `;
+
+  if (window.twttr?.widgets) {
+    window.twttr.widgets.load(
+      document.getElementById("post-list")
+    );
+  }
 }
 
 function showPrefecture(prefName) {
