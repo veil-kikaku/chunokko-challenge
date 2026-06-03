@@ -344,6 +344,14 @@ function showWelcomePage() {
         現在 ${completed} / ${total} 都道府県達成（${percent}%）
       </div>
 
+      <div class="welcome-links">
+        <a
+          href="https://x.com/search?q=%2347都道府県ちゅのっこチャレンジ&src=typed_query&f=live"
+          target="_blank">
+          #47都道府県ちゅのっこチャレンジ
+        </a>
+      </div>
+
       <h3>達成済み都道府県</h3>
 
       <div class="completed-list">
@@ -501,5 +509,24 @@ document.getElementById("zoom-reset").addEventListener("click", () => {
   mapY = 0;
   updateMapTransform();
 });
+
+document
+  .getElementById("show-top-page")
+  ?.addEventListener("click", () => {
+
+    const svgDoc =
+      document.getElementById("japan-map")
+        .contentDocument;
+
+    svgDoc
+      ?.querySelectorAll(".selected")
+      .forEach(el => el.classList.remove("selected"));
+
+    document
+      .querySelectorAll(".pref-hover-item.selected")
+      .forEach(el => el.classList.remove("selected"));
+
+    showWelcomePage();
+  });
 
 init();
