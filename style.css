@@ -402,24 +402,3 @@ height:40%;
   background:#ffd966;
 }
 
-.welcome-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin:12px 0 18px;
-}
-
-.welcome-links a{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  text-decoration:none;
-  background:#e8f4ff;
-  border:1px solid #b7d9ff;
-  color:#1976d2;
-  font-weight:bold;
-}
-
-.welcome-links a:hover{
-  background:#d7ecff;
-}

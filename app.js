@@ -304,15 +304,19 @@ function selectPrefecture(pref) {
 }
 
 function showWelcomePage() {
-  const completed = Object.keys(prefMap).length;
-  const total = 47;
-  const percent = ((completed / total) * 100).toFixed(1);
 
   document.getElementById("pref-name").textContent =
     "47都道府県ちゅのっこチャレンジ";
 
   document.getElementById("post-list").innerHTML = `
     <div class="welcome">
+      <h3>操作方法</h3>
+
+      <p>
+        地図または都道府県一覧から都道府県を選ぶと、
+        投稿されたスポットを見ることができます。
+      </p>
+
       <h3>企画について</h3>
 
       <p>
@@ -323,24 +327,11 @@ function showWelcomePage() {
         募集期間：2026/06/01～2026/06/10
       </p>
 
-      <div class="welcome-stats">
-        現在 ${completed} / ${total} 都道府県達成（${percent}%）
-      </div>
-
       <blockquote
         class="twitter-tweet"
         data-theme="light">
         <a href="https://x.com/muiKikaku/status/2061402454848331961"></a>
       </blockquote>
-
-      <div class="welcome-links">
-        <a
-          href="https://x.com/search?q=%2347都道府県ちゅのっこチャレンジ&src=typed_query&f=live"
-          target="_blank"
-          rel="noopener noreferrer">
-          #47都道府県ちゅのっこチャレンジ
-        </a>
-      </div>
 
       <p>
         地図または都道府県一覧から都道府県を選ぶと、
