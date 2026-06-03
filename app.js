@@ -332,11 +332,6 @@ function showWelcomePage() {
         data-theme="light">
         <a href="https://x.com/muiKikaku/status/2061402454848331961"></a>
       </blockquote>
-
-      <p>
-        地図または都道府県一覧から都道府県を選ぶと、
-        投稿されたスポットを見ることができます。
-      </p>
     </div>
   `;
 

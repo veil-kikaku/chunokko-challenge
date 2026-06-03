@@ -362,32 +362,6 @@ height:40%;
   margin-bottom:8px;
 }
 
-.welcome-stats{
-  margin:16px 0;
-  padding:12px;
-  background:#f7f7f7;
-  border-left:5px solid #4caf50;
-  font-weight:bold;
-}
-
-.completed-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-.completed-list button{
-  border:1px solid #ccc;
-  background:#fff;
-  border-radius:999px;
-  padding:6px 10px;
-  cursor:pointer;
-}
-
-.completed-list button:hover{
-  background:#ffd966;
-}
-
 .legend-link{
   margin-top:4px;
   text-align:center;
