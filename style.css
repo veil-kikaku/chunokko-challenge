@@ -397,8 +397,8 @@ height:40%;
 
 .header-main{
   display:flex;
-  align-items:flex-start;
-  gap:24px;
+  align-items:center;
+  gap:16px;
 }
 
 .header-info{
@@ -406,7 +406,7 @@ height:40%;
 }
 
 .header-image{
-  height:120px;
+  height:80px;
   width:auto;
   margin-right:0;
 }
