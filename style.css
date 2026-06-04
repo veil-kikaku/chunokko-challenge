@@ -395,20 +395,15 @@ height:40%;
   font-size: 12px;
 }
 
-.header-top{
+.site-title{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:20px;
+  gap:12px;
+  margin:0;
 }
 
-.header-info{
-  flex:1;
-}
-
-.header-image{
-  width:180px;
-  height:auto;
+.title-image{
+  height:80px;
+  width:auto;
   object-fit:contain;
-  flex-shrink:0;
 }
