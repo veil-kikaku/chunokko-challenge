@@ -397,12 +397,16 @@ height:40%;
 
 .header-main{
   display:flex;
-  justify-content:space-between;
   align-items:flex-start;
+  gap:24px;
+}
+
+.header-info{
+  flex:0 0 auto;
 }
 
 .header-image{
   height:120px;
   width:auto;
-  margin-right:20px;
+  margin-right:0;
 }
