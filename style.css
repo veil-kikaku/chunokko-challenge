@@ -398,16 +398,19 @@ height:40%;
 
 .header-main{
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   gap:16px;
 }
 
 .header-info{
   flex:0 0 auto;
+  padding-bottom:0;
+
 }
 
 .header-image{
-  height:80px;
+  height:120px;
   width:auto;
-  margin-right:0;
+  margin-top:-10px;
+  margin-bottom:-15px;
 }
