@@ -412,3 +412,85 @@ height:40%;
 #show-top-page{
   font-size: 12px;
 }
+
+@media (max-width:900px){
+
+  /* ヘッダー */
+
+  .header-main{
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+  }
+
+  .header-info{
+    width:100%;
+    max-width:none;
+    padding-top:0;
+  }
+
+  header h1{
+    font-size:22px;
+  }
+
+  #stats{
+    font-size:13px;
+  }
+
+  .header-image{
+    height:90px;
+  }
+
+  /* 地図と右ペイン */
+
+  #container{
+    flex-direction:column;
+    overflow:auto;
+  }
+
+  #map-container{
+    height:55vh;
+    min-height:400px;
+  }
+
+  #side-panel{
+    width:auto;
+    height:auto;
+    border-left:none;
+    border-top:1px solid #ccc;
+  }
+
+  /* 凡例 */
+
+  #map-legend{
+    top:10px;
+    right:10px;
+    font-size:12px;
+    padding:6px;
+  }
+
+  /* 都道府県一覧 */
+
+  #pref-hover-list{
+    position:static;
+    width:auto;
+    margin:10px;
+    font-size:12px;
+  }
+
+  .pref-row{
+    gap:8px;
+  }
+
+  /* ズーム */
+
+  #zoom-controls{
+    left:10px;
+    top:10px;
+  }
+
+  #pref-hover-list{
+    display:none;
+  }
+
+}
