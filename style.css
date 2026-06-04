@@ -395,15 +395,14 @@ height:40%;
   font-size: 12px;
 }
 
-.site-title{
+.header-main{
   display:flex;
-  align-items:center;
-  gap:12px;
-  margin:0;
+  justify-content:space-between;
+  align-items:flex-start;
 }
 
-.title-image{
-  height:80px;
+.header-image{
+  height:120px;
   width:auto;
-  object-fit:contain;
+  margin-right:20px;
 }
