@@ -397,16 +397,16 @@ height:40%;
 
 .header-main{
   display:flex;
-  align-items:flex-start;
-  gap:12px;
-}
-
-.header-image{
-  height:90px;
-  width:auto;
-  margin-top:-12px;
+  align-items:center;
+  gap:16px;
 }
 
 .header-info{
   flex:0 0 auto;
+}
+
+.header-image{
+  height:80px;
+  width:auto;
+  margin-right:0;
 }
