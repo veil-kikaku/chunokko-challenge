@@ -26,14 +26,28 @@ header h1{
   font-size:14px;
 }
 
+.header-main{
+  display:flex;
+  align-items:flex-start;
+  gap:24px;
+}
+
+.header-info{
+  width:560px;
+}
+
+.header-image{
+  height:120px;
+  width:auto;
+}
+
 .progress{
   height:12px;
+  margin-top:8px;
+  width:100%;
   background:#ddd;
   border-radius:10px;
   overflow:hidden;
-  margin-top:6px;
-  width:520px;
-  max-width:calc(100vw - 260px);
 }
 
 #progress-bar{
@@ -395,21 +409,4 @@ height:40%;
 
 #show-top-page{
   font-size: 12px;
-}
-
-.header-main{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
-.header-info{
-  flex:0 0 auto;
-}
-
-.header-image{
-  height:105px;
-  width:auto;
-  margin-top:0;
-  margin-bottom:0;
 }
