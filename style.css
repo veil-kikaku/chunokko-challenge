@@ -46,11 +46,15 @@ header h1{
   height:12px;
   margin-top:8px;
   width:100%;
+  background:#ddd;
+  border-radius:10px;
+  overflow:hidden;
 }
 
 #progress-bar{
   height:100%;
   width:0%;
+  border-radius:10px;
   background:linear-gradient(
     90deg,
     #90ee90,
