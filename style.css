@@ -28,12 +28,13 @@ header h1{
 
 .header-main{
   display:flex;
-  align-items:flex-start;
+  align-items:center;
   gap:24px;
 }
 
 .header-info{
-  width:560px;
+  width:480px;
+  padding-top:8px;
 }
 
 .header-image{
@@ -45,9 +46,6 @@ header h1{
   height:12px;
   margin-top:8px;
   width:100%;
-  background:#ddd;
-  border-radius:10px;
-  overflow:hidden;
 }
 
 #progress-bar{
