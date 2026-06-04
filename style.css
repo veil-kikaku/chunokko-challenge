@@ -32,6 +32,7 @@ header h1{
   border-radius:10px;
   overflow:hidden;
   margin-top:6px;
+  width:400px;
 }
 
 #progress-bar{
