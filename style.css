@@ -399,19 +399,17 @@ height:40%;
 
 .header-main{
   display:flex;
-  align-items:flex-start;
-  gap:16px;
+  align-items:center;
+  gap:18px;
 }
 
 .header-info{
   flex:0 0 auto;
-  padding-bottom:0;
-
 }
 
 .header-image{
-  height:120px;
+  height:105px;
   width:auto;
-  margin-top:4px;
-  margin-bottom:-14px;
+  margin-top:0;
+  margin-bottom:0;
 }
