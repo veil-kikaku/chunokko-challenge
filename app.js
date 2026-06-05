@@ -86,8 +86,7 @@ function setupMap() {
 
     style.id = "hover-style";
     style.textContent = `
-      .prefecture.hover-linked,
-      .prefecture:hover{
+      .prefecture.hover-linked{
         fill:#ffc107 !important;
       }
 
@@ -115,6 +114,9 @@ function setupMap() {
       pointerDownPref = e.target.closest(".prefecture");
 
       setHoverPrefecture("");
+      svgDoc
+        .querySelectorAll(".hover-linked")
+        .forEach(el => el.classList.remove("hover-linked"));
 
       isDragging = true;
       lastPointerX = e.clientX;
@@ -214,6 +216,7 @@ function setupMap() {
       pref.onmouseenter = e => {
         if (isDragging || e.pointerType === "touch") return;
 
+        pref.classList.add("hover-linked");
         setHoverPrefecture(prefName);
       };
 
@@ -222,6 +225,7 @@ function setupMap() {
       pref.onmouseleave = e => {
         if (e.pointerType === "touch") return;
 
+        pref.classList.remove("hover-linked");
         setHoverPrefecture("");
       };
 
