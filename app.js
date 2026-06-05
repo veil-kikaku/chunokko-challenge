@@ -102,19 +102,21 @@ function setupMap() {
   if (!svgRoot.dataset.dragReady) {
     svgRoot.dataset.dragReady = "true";
 
-    svgRoot.addEventListener("mousedown", e => {
+    svgRoot.addEventListener("pointerdown", e => {
       if (mapScale <= 1) return;
 
       isDragging = true;
       startX = e.clientX - mapX;
       startY = e.clientY - mapY;
 
+      svgRoot.setPointerCapture(e.pointerId);
+
       document
         .getElementById("japan-map")
         .classList.add("dragging");
     });
 
-    svgDoc.addEventListener("mousemove", e => {
+    svgRoot.addEventListener("pointermove", e => {
       if (!isDragging) return;
 
       mapX += e.movementX;
@@ -129,14 +131,23 @@ function setupMap() {
       updateMapTransform();
     });
 
-    svgDoc.addEventListener("mouseup", () => {
+    svgRoot.addEventListener("pointerup", e => {
       isDragging = false;
+
+      svgRoot.releasePointerCapture(e.pointerId);
 
       document
         .getElementById("japan-map")
         .classList.remove("dragging");
     });
 
+    svgRoot.addEventListener("pointercancel", () => {
+      isDragging = false;
+
+      document
+        .getElementById("japan-map")
+        .classList.remove("dragging");
+    });
   }
 
   svgDoc
