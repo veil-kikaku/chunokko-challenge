@@ -105,10 +105,14 @@ function setupMap() {
 
     let lastPointerX = 0;
     let lastPointerY = 0;
+    let dragMoved = false;
+    let pointerDownPref = null;
 
     svgRoot.addEventListener("pointerdown", e => {
       if (mapScale <= 1) return;
 
+      dragMoved = false;
+      pointerDownPref = e.target.closest(".prefecture");
       isDragging = true;
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
@@ -126,6 +130,10 @@ function setupMap() {
 
       const dx = e.clientX - lastPointerX;
       const dy = e.clientY - lastPointerY;
+
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+        dragMoved = true;
+      }
 
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
@@ -152,6 +160,16 @@ function setupMap() {
       document
         .getElementById("japan-map")
         .classList.remove("dragging");
+
+      if (!dragMoved && pointerDownPref) {
+        const prefName = pointerDownPref.dataset.name;
+
+        selectPrefecture(pointerDownPref);
+        showPrefecture(prefName);
+        setSelectedPrefecture(prefName);
+      }
+
+      pointerDownPref = null;
     });
 
     svgRoot.addEventListener("pointercancel", () => {
