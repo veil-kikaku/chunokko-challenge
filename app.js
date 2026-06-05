@@ -101,13 +101,12 @@ function setupMap() {
         stroke-width:4 !important;
       }
 
-      @media (hover: none) and (pointer: coarse) {
-        .prefecture.selected{
-          fill:inherit !important;
-          stroke:#ff9800 !important;
-          stroke-width:5 !important;
-        }
-      }
+     @media (hover: none) and (pointer: coarse) {
+       .prefecture.selected{
+         stroke:#ff9800 !important;
+         stroke-width:5 !important;
+       }
+     }
     `;
 
     svgRoot.appendChild(style);
