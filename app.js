@@ -131,8 +131,8 @@ function setupMap() {
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
 
-      mapX += dx;
-      mapY += dy;
+      mapX += dx * mapScale;
+      mapY += dy * mapScale;
 
       const maxX = (mapScale - 1) * 400;
       const maxY = (mapScale - 1) * 450;
@@ -156,6 +156,14 @@ function setupMap() {
     });
 
     svgRoot.addEventListener("pointercancel", () => {
+      isDragging = false;
+
+      document
+        .getElementById("japan-map")
+        .classList.remove("dragging");
+    });
+    
+    svgRoot.addEventListener("pointerleave", () => {
       isDragging = false;
 
       document
