@@ -67,6 +67,10 @@ function renderPrefItem(pref) {
   `;
 }
 
+function isTouchDevice() {
+  return window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+}
+
 function setupMap() {
   const mapObject = document.getElementById("japan-map");
   const svgDoc = mapObject.contentDocument;
@@ -86,13 +90,23 @@ function setupMap() {
 
     style.id = "hover-style";
     style.textContent = `
-      .prefecture.hover-linked{
-        fill:#ffc107 !important;
+      @media (hover: hover) and (pointer: fine) {
+        .prefecture.hover-linked{
+          fill:#ffc107 !important;
+        }
       }
 
       .prefecture.selected{
         stroke:#ff9800 !important;
         stroke-width:4 !important;
+      }
+
+      @media (hover: none) and (pointer: coarse) {
+        .prefecture.selected{
+          fill:inherit !important;
+          stroke:#ff9800 !important;
+          stroke-width:5 !important;
+        }
       }
     `;
 
@@ -214,7 +228,7 @@ function setupMap() {
       }
 
       pref.onmouseenter = e => {
-        if (isDragging || e.pointerType === "touch") return;
+        if (isTouchDevice() || isDragging) return;
 
         pref.classList.add("hover-linked");
         setHoverPrefecture(prefName);
@@ -223,7 +237,7 @@ function setupMap() {
       pref.onmousemove = null;
 
       pref.onmouseleave = e => {
-        if (e.pointerType === "touch") return;
+        if (isTouchDevice()) return;
 
         pref.classList.remove("hover-linked");
         setHoverPrefecture("");
