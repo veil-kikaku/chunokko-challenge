@@ -119,7 +119,6 @@ function setupMap() {
         .getElementById("japan-map")
         .classList.add("dragging");
 
-      e.preventDefault();
     });
 
     svgRoot.addEventListener("pointermove", e => {
