@@ -458,12 +458,15 @@ height:40%;
 
   #map-container{
     height:55vh;
-    min-height:400px;
+    min-height:360px;
+    flex-shrink:0;
   }
 
   #side-panel{
     width:auto;
-    height:auto;
+    height:45vh;
+    min-height:360px;
+    overflow-y:auto;
     border-left:none;
     border-top:1px solid #ccc;
   }
