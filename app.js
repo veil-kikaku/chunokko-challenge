@@ -74,8 +74,9 @@ function setupMap() {
   if (!svgDoc) return;
 
   const svgRoot = svgDoc.querySelector("svg");
-
   if (!svgRoot) return;
+  svgRoot.style.touchAction = "none";
+
 
   if (!svgDoc.getElementById("hover-style")) {
     const style = svgDoc.createElementNS(
@@ -102,25 +103,36 @@ function setupMap() {
   if (!svgRoot.dataset.dragReady) {
     svgRoot.dataset.dragReady = "true";
 
+    let lastPointerX = 0;
+    let lastPointerY = 0;
+
     svgRoot.addEventListener("pointerdown", e => {
       if (mapScale <= 1) return;
 
       isDragging = true;
-      startX = e.clientX - mapX;
-      startY = e.clientY - mapY;
+      lastPointerX = e.clientX;
+      lastPointerY = e.clientY;
 
       svgRoot.setPointerCapture(e.pointerId);
 
       document
         .getElementById("japan-map")
         .classList.add("dragging");
+
+      e.preventDefault();
     });
 
     svgRoot.addEventListener("pointermove", e => {
       if (!isDragging) return;
 
-      mapX += e.movementX;
-      mapY += e.movementY;
+      const dx = e.clientX - lastPointerX;
+      const dy = e.clientY - lastPointerY;
+
+      lastPointerX = e.clientX;
+      lastPointerY = e.clientY;
+
+      mapX += dx;
+      mapY += dy;
 
       const maxX = (mapScale - 1) * 400;
       const maxY = (mapScale - 1) * 450;
@@ -129,6 +141,8 @@ function setupMap() {
       mapY = Math.max(-maxY, Math.min(maxY, mapY));
 
       updateMapTransform();
+
+      e.preventDefault();
     });
 
     svgRoot.addEventListener("pointerup", e => {
@@ -430,29 +444,6 @@ let mapY = 0;
 let isDragging = false;
 let startX = 0;
 let startY = 0;
-
-window.addEventListener("mousemove", e => {
-  if (!isDragging) return;
-
-  mapX += e.movementX;
-  mapY += e.movementY;
-
-  const maxX = (mapScale - 1) * 400;
-  const maxY = (mapScale - 1) * 300;
-
-  mapX = Math.max(-maxX, Math.min(maxX, mapX));
-  mapY = Math.max(-maxY, Math.min(maxY, mapY));
-
-  updateMapTransform();
-});
-
-window.addEventListener("mouseup", () => {
-  isDragging = false;
-
-  document
-    .getElementById("japan-map")
-    .classList.remove("dragging");
-});
 
 function updateMapTransform() {
   const map = document.getElementById("japan-map");
