@@ -425,11 +425,12 @@ height:40%;
   .header-main{
     flex-direction:row;
     align-items:center;
-    gap:12px;
+    justify-content:flex-start;
+    gap:8px;
   }
 
   .header-info{
-    flex:1;
+    flex:0 1 auto;
     width:auto;
     padding-top:0;
   }
