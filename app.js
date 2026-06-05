@@ -113,6 +113,9 @@ function setupMap() {
 
       dragMoved = false;
       pointerDownPref = e.target.closest(".prefecture");
+
+      setHoverPrefecture("");
+
       isDragging = true;
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
@@ -133,6 +136,8 @@ function setupMap() {
 
       if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
         dragMoved = true;
+        pointerDownPref = null;
+        setHoverPrefecture("");
       }
 
       lastPointerX = e.clientX;
