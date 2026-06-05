@@ -485,6 +485,7 @@ height:40%;
   }
 
   /* ズーム */
+
   #zoom-controls{
     left:10px;
     top:10px;
@@ -492,6 +493,11 @@ height:40%;
 
   #pref-hover-list{
     display:none;
+  }
+
+  .progress{
+    width:320px;
+    max-width:100%;
   }
 }
 
@@ -507,5 +513,10 @@ height:40%;
 
   #stats{
     font-size:11px;
+  }
+  
+  .progress{
+    width:220px;
+    max-width:100%;
   }
 }
