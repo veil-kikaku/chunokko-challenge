@@ -131,8 +131,8 @@ function setupMap() {
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
 
-      mapX += dx * mapScale;
-      mapY += dy * mapScale;
+      mapX += dx;
+      mapY += dy;
 
       const maxX = (mapScale - 1) * 400;
       const maxY = (mapScale - 1) * 450;
