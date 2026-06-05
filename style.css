@@ -418,6 +418,26 @@ height:40%;
   touch-action:none;
 }
 
+@media (max-width: 1500px) {
+
+  #container {
+    flex-direction: column;
+  }
+
+  #map-container {
+    width: 100%;
+    height: 700px;
+  }
+
+  #side-panel {
+    width: 100%;
+    max-width: none;
+    border-left: none;
+    border-top: 1px solid #ddd;
+  }
+
+}
+
 @media (max-width:900px){
 
   /* ヘッダー */
