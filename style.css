@@ -436,8 +436,9 @@ height:40%;
   }
 
   header h1{
-    font-size:18px;
+    font-size:16px;
     white-space:nowrap;
+    letter-spacing:-0.03em;
   }
 
   #stats{
@@ -517,7 +518,8 @@ height:40%;
   }
 
   header h1{
-    font-size:18px;
+    font-size:15px;
+    letter-spacing:-0.04em;
   }
 
   #stats{
