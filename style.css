@@ -430,7 +430,8 @@ height:40%;
   }
 
   header h1{
-    font-size:22px;
+    font-size:18px;
+    white-space:nowrap;
   }
 
   #stats{
@@ -484,7 +485,6 @@ height:40%;
   }
 
   /* ズーム */
-
   #zoom-controls{
     left:10px;
     top:10px;
@@ -493,19 +493,19 @@ height:40%;
   #pref-hover-list{
     display:none;
   }
+}
 
-  @media (max-width:480px){
-    .header-image{
-      height:56px;
-    }
 
-    header h1{
-      font-size:18px;
-    }
-
-    #stats{
-      font-size:11px;
-    }
+@media (max-width:480px){
+  .header-image{
+    height:56px;
   }
 
+  header h1{
+    font-size:18px;
+  }
+
+  #stats{
+    font-size:11px;
+  }
 }
