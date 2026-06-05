@@ -207,14 +207,16 @@ function setupMap() {
       }
 
       pref.onmouseenter = e => {
-        if (isDragging) return;
+        if (isDragging || e.pointerType === "touch") return;
 
         setHoverPrefecture(prefName);
       };
 
       pref.onmousemove = null;
 
-      pref.onmouseleave = () => {
+      pref.onmouseleave = e => {
+        if (e.pointerType === "touch") return;
+
         setHoverPrefecture("");
       };
 
